@@ -1,0 +1,77 @@
+---
+import CategoryLanding from "@/components/seo/CategoryLanding.astro";
+import { getSortedPosts } from "@/utils/content-utils";
+
+const allPosts = await getSortedPosts();
+// 筛选教程、客户端、科普文章
+const tutorialPosts = allPosts.filter((p) => {
+	const cat = p.data.category || "";
+	const tags = p.data.tags || [];
+	return (
+		cat.includes("教程") ||
+		cat.includes("客户端") ||
+		cat.includes("对比") ||
+		tags.some((t) =>
+			[
+				"使用教程",
+				"客户端",
+				"小白入门",
+				"订阅导入",
+				"分流设置",
+				"TUN模式",
+				"线路知识",
+			].includes(t),
+		)
+	);
+});
+
+const subLinks = [
+	{
+		name: "全平台客户端使用教程",
+		url: "/posts/client-setup-clash-verge-shadowrocket/",
+		icon: "material-symbols:download-rounded",
+		badge: "图文必读",
+	},
+	{
+		name: "IEPL vs IPLC 线路科普",
+		url: "/posts/comparison-airports-pricing-lines/",
+		icon: "material-symbols:menu-book-rounded",
+	},
+	{
+		name: "AI 平台原生解锁教程",
+		url: "/posts/ai-chatgpt-claude-cursor-airports/",
+		icon: "material-symbols:smart-toy-rounded",
+	},
+	{
+		name: "机场跑路识别与防坑指南",
+		url: "/posts/risk-warning-runaway-record/",
+		icon: "material-symbols:report-rounded",
+	},
+];
+
+const faqs = [
+	{
+		question: "什么是机场订阅链接？与单个节点有什么区别？",
+		answer:
+			"订阅链接是一个由服务商服务器动态托管的 URL。当节点受到网络波动或更换境外机房时，服务商会在后端实时更新；用户在客户端点击‘更新订阅’即可秒级同步全量最新可用节点，无需每次手动重新配置单节点配置参数。",
+	},
+	{
+		question: "开启代理后，国内 App 或微信会变慢或消耗流量吗？",
+		answer:
+			"只要在客户端（如 Clash Verge Rev、Shadowrocket）中将运行模式设为【规则 (Rule)】或【配置 (Config)】分流模式，访问百度、淘宝、微信等国内流量会自动走 DIRECT 直连本地宽带，毫秒级响应且 100% 不消耗机场套餐流量。",
+	},
+];
+---
+
+<CategoryLanding
+  title="科学上网从入门到精通使用教程指南 - Airportizi"
+  description="全网最全科学上网与机场订阅配置教程。从Windows、Mac、iOS、Android客户端安装、一键订阅导入，到分流规则自定义、TUN网卡模式接管与晚高峰加速调优。"
+  h1Title="科学上网与机场客户端全平台使用教程"
+  badge="实操教程与技术百科"
+  iconName="material-symbols:school-rounded"
+  introMarkdown="对于刚接触代理工具的新手来说，各种客户端、协议格式与规则配置往往令人望而却步。本专栏精心编写了覆盖全操作系统（Windows / macOS / iOS / Android）的保姆级图文教学，系统解答订阅导入失败、时间不同步报错、TUN 网卡模式开启及 AI 提示词防封号等常见实战难题。"
+  subLinks={subLinks}
+  posts={tutorialPosts}
+  canonicalPath="/tutorial/"
+  faqs={faqs}
+/>

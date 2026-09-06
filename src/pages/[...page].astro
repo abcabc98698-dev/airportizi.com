@@ -19,14 +19,18 @@ const { page } = Astro.props;
 
 const len = page.data.length;
 
-// 列表页隐藏的 h1：首屏用站点标题，后续页用「首页 · 页码」，避免空 h1
-const heading =
-	page.currentPage === 1
-		? siteConfig.title
-		: `${i18n(I18nKey.home)} · ${page.currentPage}`;
+// 分页与标题配置：首页保持默认站点标题与描述，第2页起增加页码避免重复 Title 与 Description
+const isFirstPage = page.currentPage === 1;
+const title = isFirstPage ? undefined : `第 ${page.currentPage} 页`;
+const description = isFirstPage
+	? undefined
+	: `${siteConfig.description}（第 ${page.currentPage} 页）`;
+const heading = isFirstPage
+	? siteConfig.title
+	: `${i18n(I18nKey.home)} · 第 ${page.currentPage} 页`;
 ---
 
-<MainGridLayout heading={heading}>
+<MainGridLayout title={title} description={description} heading={heading}>
   <PostPage page={page} />
   {
     page.total > page.size && (

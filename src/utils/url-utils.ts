@@ -1,5 +1,6 @@
 import I18nKey from "@i18n/i18nKey";
 import { i18n } from "@i18n/translation";
+import { siteConfig } from "../config/siteConfig";
 
 /**
  * 移除文件扩展名（.md, .mdx, .markdown）
@@ -72,15 +73,15 @@ export function getSearchUrl(query: string): string {
 	return url(`/search/?q=${encodeURIComponent(query.trim())}`);
 }
 
-// 生成 canonical URL：仅对客户端筛选路由（/archive/ 与 /search/）剥离查询串，
-// 避免 ?tag=/?category=/?q= 这类服务端渲染下会被写进 Astro.url 的重复内容 URL
-// 自我 canonical。分页（/2/）、文章页等无查询串的路径保持原样。
+// 生成 canonical URL：严格采用官方正式主域名 (siteConfig.site_url)，并自动剥离全部查询串与追踪参数，
+// 保证规范自引用，防止在非生产或开发域名下构建出错误主机头，或因 ?tag=/?ref= 造成重复内容索引分散。
 export function getCanonicalUrl(urlObj: URL): string {
-	const pathname = urlObj.pathname;
-	if (pathname === "/archive/" || pathname === "/search/") {
-		return new URL(pathname, urlObj.origin).toString();
+	const base = siteConfig.site_url.replace(/\/$/, "");
+	let pathname = urlObj.pathname;
+	if (!pathname.endsWith("/") && !pathname.includes(".")) {
+		pathname += "/";
 	}
-	return urlObj.toString();
+	return `${base}${pathname}`;
 }
 
 export function url(path: string): string {

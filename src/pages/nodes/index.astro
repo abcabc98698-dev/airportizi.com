@@ -1,0 +1,74 @@
+---
+import CategoryLanding from "@/components/seo/CategoryLanding.astro";
+import { getSortedPosts } from "@/utils/content-utils";
+
+const allPosts = await getSortedPosts();
+// 筛选节点、线路、测速相关文章
+const nodesPosts = allPosts.filter((p) => {
+	const tags = p.data.tags || [];
+	return (
+		tags.some((t) =>
+			[
+				"IEPL专线",
+				"企业级内网专线",
+				"线路对比",
+				"AI解锁",
+				"原生IP",
+				"三网优化",
+			].includes(t),
+		) ||
+		p.id.includes("review") ||
+		p.id.includes("lines")
+	);
+});
+
+const subLinks = [
+	{
+		name: "光速云 0丢包节点实测",
+		url: "/posts/guangshuyun-review/",
+		icon: "material-symbols:bolt-rounded",
+		badge: "实测大图",
+	},
+	{
+		name: "唯兔云 60+节点三网优化",
+		url: "/posts/brand-weitu-review/",
+		icon: "material-symbols:hub-rounded",
+	},
+	{
+		name: "AI 原生 IP 节点解析",
+		url: "/posts/ai-chatgpt-claude-cursor-airports/",
+		icon: "material-symbols:smart-toy-rounded",
+	},
+	{
+		name: "线路架构全面 PK",
+		url: "/posts/comparison-airports-pricing-lines/",
+		icon: "material-symbols:compare-arrows-rounded",
+	},
+];
+
+const faqs = [
+	{
+		question: "日常使用中，香港、日本、新加坡、美国节点应该怎么选？",
+		answer:
+			"日常刷网页、看 YouTube 4K 及大部分流媒体，优先选香港（延迟最低，华南仅 20ms）和日本；调用 ChatGPT、Claude、Cursor 代码助手，优先选美国硅谷或新加坡原生纯净商宽节点；玩日服/东南亚游戏选对应地区专线。",
+	},
+	{
+		question: "为什么节点延迟很低，但打开网页却很慢？",
+		answer:
+			"客户端测速显示的 Ping 通常只是国内入口到中转机房的 TCP 握手延迟，并不代表跨境专线到海外真实网站的端到端速度。选购时必须查看端到端真实下载速率与晚高峰持续丢包率。",
+	},
+];
+---
+
+<CategoryLanding
+  title="全球节点选择与专线线路测速指南 - Airportizi"
+  description="香港、日本、新加坡、美国及全球优质节点选择技巧与真实测速。解析BGP三网优化、IEPL内网专线物理穿透、原生IP与流媒体解锁原理，助你秒连最优节点。"
+  h1Title="全球节点分布与专线网络测速指南"
+  badge="节点与路由可观测性"
+  iconName="material-symbols:hub-rounded"
+  introMarkdown="不同的节点地区和路由出口直接决定了您的实际使用体验。华南华东用户连接香港与日本节点延迟仅 20~50ms，适合极速秒开；而海外 AI 工具与流媒体则高度依赖美国原生商宽与家宽低风控 IP。本栏目为您披露各大机场核心节点的真实测速大图、丢包率指标与线路调度技巧。"
+  subLinks={subLinks}
+  posts={nodesPosts}
+  canonicalPath="/nodes/"
+  faqs={faqs}
+/>

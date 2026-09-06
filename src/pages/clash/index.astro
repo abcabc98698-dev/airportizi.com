@@ -1,0 +1,80 @@
+---
+import CategoryLanding from "@/components/seo/CategoryLanding.astro";
+import { getSortedPosts } from "@/utils/content-utils";
+
+const allPosts = await getSortedPosts();
+// 筛选客户端、Clash、教程相关文章
+const clashPosts = allPosts.filter((p) => {
+	const tags = p.data.tags || [];
+	const cat = p.data.category || "";
+	return (
+		cat.includes("客户端") ||
+		cat.includes("教程") ||
+		tags.some((t) =>
+			[
+				"客户端",
+				"ClashVerge",
+				"小火箭",
+				"Shadowrocket",
+				"v2rayN",
+				"sing-box",
+				"Windows",
+				"Mac",
+				"iPhone",
+				"Android",
+			].includes(t),
+		)
+	);
+});
+
+const subLinks = [
+	{
+		name: "全平台客户端下载与配置",
+		url: "/posts/client-setup-clash-verge-shadowrocket/",
+		icon: "material-symbols:download-rounded",
+		badge: "新手必读",
+	},
+	{
+		name: "光速云自研客户端",
+		url: "/posts/guangshuyun-review/",
+		icon: "material-symbols:bolt-rounded",
+		badge: "一键秒连",
+	},
+	{
+		name: "Clash Verge Rev 技巧",
+		url: "/posts/client-setup-clash-verge-shadowrocket/#1-windows-电脑配置教程clash-verge-rev",
+		icon: "material-symbols:terminal-rounded",
+	},
+	{
+		name: "小火箭 Shadowrocket 教程",
+		url: "/posts/client-setup-clash-verge-shadowrocket/#2-iphone--ipad-苹果手机配置教程小火箭-shadowrocket",
+		icon: "material-symbols:rocket-rounded",
+	},
+];
+
+const faqs = [
+	{
+		question: "原版 Clash for Windows 停更后，电脑端现在推荐用什么？",
+		answer:
+			"2026 年首推基于开源 Mihomo 内核深度优化的 Clash Verge Rev，界面现代化，原生支持 TUN 虚拟网卡模式，全面兼容 VLESS、Hysteria2 等新一代协议，并支持智能规则分流。",
+	},
+	{
+		question: "为什么节点测速全部超时，显示红色或打叉？",
+		answer:
+			"95% 以上的原因是本地系统时间与国际标准时间（北京时间）偏差超过 60 秒。现代安全协议依赖时间戳握手验证，只需在电脑或手机设置中点击‘自动同步时间’即可立即恢复连接。",
+	},
+];
+---
+
+<CategoryLanding
+  title="Clash与全平台客户端配置教程指南 - Airportizi"
+  description="2026最新全平台科学上网客户端使用与订阅导入指南。涵盖Windows/Mac端Clash Verge Rev、iOS小火箭Shadowrocket、Android/sing-box配置，提供TUN模式接管与规则分流避坑教学。"
+  h1Title="Clash 与全平台代理客户端使用指南"
+  badge="客户端与工具生态"
+  iconName="material-symbols:devices-rounded"
+  introMarkdown="购买了专线机场服务后，如何选择和配置最适合自己的客户端？本文系统整理 Windows、macOS、iOS 及 Android 各平台的最新主力工具（如 Clash Verge Rev、Shadowrocket、sing-box），手把手教您订阅链接导入、智能分流规则设置、TUN 网卡全局接管与常见连接故障排查。"
+  subLinks={subLinks}
+  posts={clashPosts}
+  canonicalPath="/clash/"
+  faqs={faqs}
+/>

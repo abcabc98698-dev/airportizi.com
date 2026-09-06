@@ -5,6 +5,9 @@ import { i18n } from "@i18n/translation";
 import MainGridLayout from "@layouts/MainGridLayout.astro";
 ---
 
-<MainGridLayout title={i18n(I18nKey.archive)}>
+<MainGridLayout
+  title={i18n(I18nKey.archive)}
+  description="Airportizi 历史文章全站时间线归档，快速查阅历年机场测评、专线节点分析与翻墙客户端使用教程。"
+>
   <ArchivePanel />
 </MainGridLayout>

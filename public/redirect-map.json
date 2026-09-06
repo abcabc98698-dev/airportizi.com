@@ -1,0 +1,13 @@
+{
+  "description": "301 Permanent Redirect Mapping for airportizi.com",
+  "domain": "https://airportizi.com",
+  "rules": {
+    "/recommend/": "/jichang/",
+    "/reviews/": "/brands/",
+    "/database/": "/jichang/",
+    "/clients/": "/clash/",
+    "/tutorials/": "/tutorial/",
+    "/risk/": "/tizi/",
+    "/sitemap.xml": "/sitemap-index.xml"
+  }
+}

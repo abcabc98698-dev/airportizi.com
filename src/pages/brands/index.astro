@@ -1,0 +1,130 @@
+---
+import CategoryLanding from "@/components/seo/CategoryLanding.astro";
+import { getSortedPosts } from "@/utils/content-utils";
+
+const allPosts = await getSortedPosts();
+// 筛选品牌评测文章
+const brandPosts = allPosts.filter((p) => {
+	const cat = p.data.category || "";
+	return cat.includes("品牌库") || p.id.includes("review");
+});
+
+const subLinks = [
+	{
+		name: "光速云 (TOP 1 主推)",
+		url: "/posts/guangshuyun-review/",
+		icon: "material-symbols:bolt-rounded",
+		badge: "TOP 1 8折码",
+	},
+	{
+		name: "微风网络 (TOP 2)",
+		url: "/posts/brand-weifeng-review/",
+		icon: "material-symbols:air-rounded",
+		badge: "TOP 2",
+	},
+	{
+		name: "飞猫云 (TOP 3)",
+		url: "/posts/brand-feimaoyun-review/",
+		icon: "material-symbols:pets-rounded",
+		badge: "TOP 3",
+	},
+	{
+		name: "星岛梦 (TOP 4)",
+		url: "/posts/brand-xingdaomeng-review/",
+		icon: "material-symbols:auto-awesome-rounded",
+		badge: "TOP 4",
+	},
+	{
+		name: "唯兔云 (TOP 5)",
+		url: "/posts/brand-weitu-review/",
+		icon: "material-symbols:hub-rounded",
+		badge: "TOP 5 月付",
+	},
+	{
+		name: "宇宙云 (14.9元月付)",
+		url: "/posts/yuzhouyun-review-8-yuan/",
+		icon: "material-symbols:cloud-done-rounded",
+	},
+	{
+		name: "灵猫网络 (19元150G)",
+		url: "/posts/brand-lingmao-review/",
+		icon: "material-symbols:cruelty-free-rounded",
+	},
+	{
+		name: "极连云 (18元IEPL)",
+		url: "/posts/brand-jilianyun-review/",
+		icon: "material-symbols:speed-rounded",
+	},
+	{
+		name: "光年梯 (18元110G)",
+		url: "/posts/brand-guangnianti-review/",
+		icon: "material-symbols:flight-takeoff-rounded",
+	},
+	{
+		name: "二猫云 (20元130G)",
+		url: "/posts/brand-ermaoyun-review/",
+		icon: "material-symbols:cruelty-free-rounded",
+	},
+	{
+		name: "一翻云 (20元150G)",
+		url: "/posts/brand-yifanyun-review/",
+		icon: "material-symbols:cloud-upload-rounded",
+	},
+	{
+		name: "U1S1 (20元120G)",
+		url: "/posts/brand-u1s1-review/",
+		icon: "material-symbols:verified-rounded",
+	},
+	{
+		name: "全球云 (20元新秀)",
+		url: "/posts/brand-quanqiuyun-review/",
+		icon: "material-symbols:public-rounded",
+	},
+	{
+		name: "速界 (25元AI专线)",
+		url: "/posts/brand-sujie-review/",
+		icon: "material-symbols:smart-toy-rounded",
+	},
+	{
+		name: "SOGO云 (25元150G)",
+		url: "/posts/brand-sogoyun-review/",
+		icon: "material-symbols:cloud-circle-rounded",
+	},
+	{
+		name: "可信云 (25元多设备)",
+		url: "/posts/brand-kexinyun-review/",
+		icon: "material-symbols:devices-rounded",
+	},
+	{
+		name: "快狸 (25元综合型)",
+		url: "/posts/brand-kuaili-review/",
+		icon: "material-symbols:flash-on-rounded",
+	},
+];
+
+const faqs = [
+	{
+		question: "Airportizi 机场品牌库的评测数据来自哪里？",
+		answer:
+			"本站所有评测均基于真实的千兆网络环境测速大图，并结合官方公布的套餐与协议参数进行交叉验证。严格区分年付折算价格与真实月付价格，不虚标、不承诺永久全解，真实呈现晚高峰丢包与延迟。",
+	},
+	{
+		question: "如果预算在 20 元以内，品牌库中哪几家最推荐？",
+		answer:
+			"若希望长期使用且月均成本极低，首推老牌光速云（年付折合约 7.5 元/月，8折码 AMM）；若坚持纯月付拒绝年付捆绑，推荐宇宙云（14.9 元/月 100GB）或唯兔云（14.9 元/月 100GB）；若需要大流量推荐一翻云（20 元 150GB）或灵猫网络（19 元 150GB）。",
+	},
+];
+---
+
+<CategoryLanding
+  title="2026机场品牌库大全与全网实测数据库 - Airportizi"
+  description="全网最全梯子机场品牌实测数据库。收录光速云、微风、飞猫云、星岛梦、宇宙云、二猫云等16+主流服务商，真实披露节点测速大图、线路协议、价格梯度与专属折扣优惠券。"
+  h1Title="2026 科学上网机场品牌库与全景实测数据库"
+  badge="品牌数据库与档案"
+  iconName="material-symbols:storefront-rounded"
+  introMarkdown="选对正规服务商是保障网络体验的关键。Airportizi 品牌库收录了 2026 年市场上活跃的 16 家主流服务商，每一家品牌均建立独立的技术测评档案，包含真实节点测速大图、晚高峰丢包率监控、AI 与流媒体可用性矩阵、开业年限历史及官方正品防失联入口。"
+  subLinks={subLinks}
+  posts={brandPosts}
+  canonicalPath="/brands/"
+  faqs={faqs}
+/>

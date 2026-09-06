@@ -1,0 +1,77 @@
+---
+import CategoryLanding from "@/components/seo/CategoryLanding.astro";
+import { getSortedPosts } from "@/utils/content-utils";
+
+const allPosts = await getSortedPosts();
+// 筛选 VPN、专线、协议相关文章
+const vpnPosts = allPosts.filter((p) => {
+	const tags = p.data.tags || [];
+	const cat = p.data.category || "";
+	return (
+		tags.some((t) =>
+			[
+				"IEPL专线",
+				"IPLC专线",
+				"企业级内网专线",
+				"协议对比",
+				"线路对比",
+				"稳定机场",
+				"主推机场",
+			].includes(t),
+		) ||
+		cat.includes("对比") ||
+		p.id.includes("guangshuyun") ||
+		p.id.includes("comparison")
+	);
+});
+
+const subLinks = [
+	{
+		name: "光速云企业专线 (主推)",
+		url: "/posts/guangshuyun-review/",
+		icon: "material-symbols:bolt-rounded",
+		badge: "TOP 1",
+	},
+	{
+		name: "IEPL vs IPLC 专线对比",
+		url: "/posts/comparison-airports-pricing-lines/",
+		icon: "material-symbols:compare-arrows-rounded",
+	},
+	{
+		name: "星岛梦内网专线",
+		url: "/posts/brand-xingdaomeng-review/",
+		icon: "material-symbols:auto-awesome-rounded",
+	},
+	{
+		name: "全平台客户端配置",
+		url: "/posts/client-setup-clash-verge-shadowrocket/",
+		icon: "material-symbols:devices-rounded",
+	},
+];
+
+const faqs = [
+	{
+		question: "传统 VPN 与机场 IEPL 国际专线有什么本质区别？",
+		answer:
+			"传统公网 VPN（如 OpenVPN、WireGuard、IKEv2）数据流量需要经由公网 GFW 审查出口，极易因特征明显遭到主动阻断或限速；而 IEPL 专线采用跨境物理专线直接内网透传，完全绕开公网审查，晚高峰几乎 0 丢包且延迟极低。",
+	},
+	{
+		question: "访问海外 AI 工具（ChatGPT/Claude）用 VPN 好还是专线好？",
+		answer:
+			"强烈推荐使用纯净商宽/家宽落地出口的 IEPL 专线（如本站主推的光速云）。传统商业机房 VPN 由于万人共享 IP，几乎 100% 会触发 Cloudflare 验证码或导致 Claude 封号。",
+	},
+];
+---
+
+<CategoryLanding
+  title="VPN与国际专线加速选购指南 - Airportizi"
+  description="深度解析传统商业VPN与新一代IEPL物理内网专线的差异。提供电信、联通、移动三网优化专线实测推荐，涵盖光速云、星岛梦等老牌高稳定服务商测评。"
+  h1Title="VPN 与国际专线加速选购指南"
+  badge="专线与网络架构"
+  iconName="material-symbols:shield-lock-rounded"
+  introMarkdown="在跨境网络加速与隐私安全领域，很多用户常常混淆“公网 VPN”与“机场专线”。公网 VPN 虽然提供全局加密隧道，但直接穿越公网国际出口，极易遭受 GFW 识别阻断与丢包限速。而新一代 IEPL/IPLC 企业专线通过跨境物理链路直连境外机房，具备真正的 0 丢包和极低延迟。本栏目为您系统梳理专线技术、防封锁架构与旗舰品牌实测。"
+  subLinks={subLinks}
+  posts={vpnPosts}
+  canonicalPath="/vpn/"
+  faqs={faqs}
+/>

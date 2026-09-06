@@ -10,7 +10,10 @@ const seriesList = await getSeriesList();
 const totalPosts = seriesList.reduce((sum, series) => sum + series.count, 0);
 ---
 
-<MainGridLayout title={i18n(I18nKey.series)} description={i18n(I18nKey.allSeries)}>
+<MainGridLayout
+  title={i18n(I18nKey.series)}
+  description="Airportizi 精选专题专栏系列：包含机场横向评测、客户端从零配置、晚高峰防卡顿、AI专线与自建节点全面指南。"
+>
     <!-- 页面标题 -->
     <div class="card-base px-8 py-6 mb-4">
         <div class="text-2xl font-bold text-(--primary) mb-2">

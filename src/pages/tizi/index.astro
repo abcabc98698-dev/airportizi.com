@@ -1,0 +1,69 @@
+---
+import CategoryLanding from "@/components/seo/CategoryLanding.astro";
+import { getSortedPosts } from "@/utils/content-utils";
+
+const allPosts = await getSortedPosts();
+// 筛选风险、防失联、梯子推荐相关文章
+const tiziPosts = allPosts.filter((p) => {
+	const cat = p.data.category || "";
+	return (
+		cat.includes("风险预警") ||
+		cat.includes("机场推荐") ||
+		p.id.includes("risk") ||
+		p.id.includes("recommend") ||
+		p.id.includes("guangshuyun")
+	);
+});
+
+const subLinks = [
+	{
+		name: "机场跑路名单与避坑指南",
+		url: "/posts/risk-warning-runaway-record/",
+		icon: "material-symbols:warning-rounded",
+		badge: "防坑必看",
+	},
+	{
+		name: "光速云 5年老牌防失联",
+		url: "/posts/guangshuyun-review/",
+		icon: "material-symbols:bolt-rounded",
+		badge: "TOP 1",
+	},
+	{
+		name: "星岛梦 永久有效不限时",
+		url: "/posts/brand-xingdaomeng-review/",
+		icon: "material-symbols:auto-awesome-rounded",
+		badge: "备用首选",
+	},
+	{
+		name: "最新风险动态中心",
+		url: "/dynamic/",
+		icon: "material-symbols:history-rounded",
+	},
+];
+
+const faqs = [
+	{
+		question: "如何避免购买到容易跑路的梯子机场？",
+		answer:
+			"谨防‘超低价多年付’、‘永久买断 50 元’等反常促销；优先选择运营 3 年以上的老牌服务商；新手一律坚持月付结算；平时设备中常备一个不限时备用套餐，实行‘一主一备’双保险策略。",
+	},
+	{
+		question: "官网打不开或被封锁时如何找到最新入口？",
+		answer:
+			"正规机场通常会配置自动化多域名反代分流系统并定期在官方频道推送新镜像。用户应收藏 Airportizi 官网品牌库，本站通过自动化探针实时同步收录各大服务商的官方防失联入口。",
+	},
+];
+---
+
+<CategoryLanding
+  title="靠谱梯子推荐与防失联避坑指南 - Airportizi"
+  description="2026年靠谱科学上网梯子精选推荐。实时监测失联机场、异常断流与域名变更，揭露跑路杀猪盘套路，传授一主一备防失联技巧与老牌稳定梯子选购方案。"
+  h1Title="稳定靠谱梯子精选与防失联避坑指南"
+  badge="安全与防坑风控"
+  iconName="material-symbols:verified-user-rounded"
+  introMarkdown="在梯子市场中，稳定靠谱与资金安全始终排在第一位。很多劣质机场因抗风险能力弱，一旦遭遇敏感期或上游拔线便突然关站失联。本专栏结合全网探针监测与用户真实反馈，深度剖析跑路前兆特征，建立实时风险通报库，并甄选出运营多年、商誉卓著的高信誉专线梯子品牌。"
+  subLinks={subLinks}
+  posts={tiziPosts}
+  canonicalPath="/tizi/"
+  faqs={faqs}
+/>

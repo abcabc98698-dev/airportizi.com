@@ -38,6 +38,15 @@ export type SiteConfig = {
 
 	lang: "en" | "zh_CN" | "zh_TW" | "ja" | "ru" | "ko";
 
+	// 搜索引擎站长平台所有权验证代码（用于在上线后方便填入 Meta 标签）
+	seoVerification?: {
+		google?: string; // Google Search Console: <meta name="google-site-verification" content="..." />
+		bing?: string; // Bing Webmaster Tools: <meta name="msvalidate.01" content="..." />
+		baidu?: string; // 百度搜索资源平台: <meta name="baidu-site-verification" content="..." />
+		shenma?: string; // 神马站长平台: <meta name="shenma-site-verification" content="..." />
+		sogou?: string; // 搜狗站长平台: <meta name="sogou_site_verification" content="..." />
+	};
+
 	themeColor: {
 		hue: number;
 		defaultMode?: LIGHT_DARK_MODE; // 默认模式：浅色、深色或跟随系统

@@ -1,0 +1,12 @@
+# 301 Permanent Redirects for airportizi.com
+
+# 核心栏目历史别名 301 重定向
+/recommend/    /jichang/    301
+/reviews/      /brands/     301
+/database/     /jichang/    301
+/clients/      /clash/      301
+/tutorials/    /tutorial/   301
+/risk/         /tizi/       301
+
+# 静态资源与别名重定向
+/sitemap.xml   /sitemap-index.xml   301

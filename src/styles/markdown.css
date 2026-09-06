@@ -202,6 +202,39 @@
   tr:nth-child(even) td {
     @apply bg-(--btn-plain-bg-active);
   }
+
+  /* 表格内官方直达/注册 CTA 按钮高亮强化 */
+  table td a[href*="aff"],
+  table td a[href*="code="],
+  table td a[href*="register"],
+  table td a[href*="sahude"],
+  table td a[href*="breezenet"],
+  table td a[href*="yuzoucloud"] {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.35rem 0.85rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    line-height: 1.2;
+    color: #ffffff !important;
+    background: linear-gradient(135deg, var(--primary), color-mix(in oklch, var(--primary) 75%, #1e1e38));
+    border-radius: 9999px;
+    text-decoration: none !important;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.18);
+    white-space: nowrap;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+    &:hover {
+      transform: translateY(-1px) scale(1.03);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.28);
+      background: var(--primary);
+    }
+
+    &:active {
+      transform: translateY(0) scale(0.98);
+    }
+  }
 }
 
 body.wallpaper-transparent .custom-md {

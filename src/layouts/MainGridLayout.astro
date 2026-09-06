@@ -47,6 +47,8 @@ interface Props {
 		minutes?: number;
 	};
 	heading?: string;
+	robots?: string;
+	suppressH1?: boolean;
 }
 
 const backgroundImages = getBackgroundImages();
@@ -66,6 +68,8 @@ const {
 	encrypted = false,
 	bannerPostMeta,
 	heading,
+	robots,
+	suppressH1 = false,
 } = Astro.props;
 
 const isHomePageCheck = isHomePage(Astro.url.pathname);
@@ -96,7 +100,7 @@ const {
 } = sidebar;
 ---
 
-<Layout title={title} description={description} lang={lang} setOGTypeArticle={setOGTypeArticle} postSlug={postSlug} postCoverImage={postCoverImage} ogImageWidth={ogImageWidth} ogImageHeight={ogImageHeight} ogImageAlt={ogImageAlt} hasWallpaper={hasWallpaper}>
+<Layout title={title} description={description} lang={lang} setOGTypeArticle={setOGTypeArticle} postSlug={postSlug} postCoverImage={postCoverImage} ogImageWidth={ogImageWidth} ogImageHeight={ogImageHeight} ogImageAlt={ogImageAlt} hasWallpaper={hasWallpaper} robots={robots}>
 
 <slot slot="head" name="head" />
 <HeaderTopRow navbarMode={navbarMode} navbarWidthFull={navbarWidthFull} />
@@ -140,8 +144,8 @@ const {
                     class="transition-main"
                     data-current-post-category={postCategory || ""}
                 >
-                {/* 为每个页面提供一个隐藏的h1标题，用于SEO和可访问性 */}
-                <h1 class="sr-only">{heading || title}</h1>
+                {/* 为页面提供隐藏的h1标题（若子页面已提供语义化H1则跳过，保持全站单H1规范） */}
+                {!suppressH1 && <h1 class="sr-only">{heading || title}</h1>}
                 <div id="content-wrapper" class="onload-animation transition-leaving">
                     <slot></slot>
                 </div>

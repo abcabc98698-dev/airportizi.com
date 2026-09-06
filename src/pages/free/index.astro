@@ -1,0 +1,79 @@
+---
+import CategoryLanding from "@/components/seo/CategoryLanding.astro";
+import { getSortedPosts } from "@/utils/content-utils";
+
+const allPosts = await getSortedPosts();
+// 筛选优惠码、便宜、性价比文章
+const freePosts = allPosts.filter((p) => {
+	const tags = p.data.tags || [];
+	return tags.some((t) =>
+		[
+			"优惠码",
+			"便宜机场",
+			"性价比机场",
+			"7元机场",
+			"8元机场",
+			"10元以下机场",
+			"15元机场",
+			"小流量机场",
+		].includes(t),
+	);
+});
+
+const subLinks = [
+	{
+		name: "光速云 8折优惠码 AMM",
+		url: "/posts/guangshuyun-review/",
+		icon: "material-symbols:loyalty-rounded",
+		badge: "折合约7.5元/月",
+	},
+	{
+		name: "飞猫云 8折码 flycat888",
+		url: "/posts/brand-feimaoyun-review/",
+		icon: "material-symbols:loyalty-rounded",
+		badge: "折合约7元/月",
+	},
+	{
+		name: "微风 9折码 flat888",
+		url: "/posts/brand-weifeng-review/",
+		icon: "material-symbols:loyalty-rounded",
+	},
+	{
+		name: "星岛梦 9折码 nmw888",
+		url: "/posts/brand-xingdaomeng-review/",
+		icon: "material-symbols:loyalty-rounded",
+	},
+	{
+		name: "宇宙云优惠码 YUZHOU553",
+		url: "/posts/yuzhouyun-review-8-yuan/",
+		icon: "material-symbols:loyalty-rounded",
+		badge: "14.9元纯月付",
+	},
+];
+
+const faqs = [
+	{
+		question: "网上流传的‘完全免费节点’真的能长期使用吗？",
+		answer:
+			"天下没有免费的午餐。绝大多数公开的免费节点不仅速度慢、频繁断连，更存在严重的中间人明文嗅探和日志窃取风险。建议使用大牌机场的低成本小流量套餐或输入专属优惠码购买月付，既经济实惠又安全可靠。",
+	},
+	{
+		question: "优惠码如何在结账时生效？",
+		answer:
+			"进入各品牌官方注册链接后，选定心仪套餐进入购物车结账页面，在‘优惠券/折扣码’输入框填入专属代码（如光速云填入 AMM），点击应用即可立享 8~9 折立减优惠。",
+	},
+];
+---
+
+<CategoryLanding
+  title="免费体验与机场专属折扣优惠码大全 - Airportizi"
+  description="2026年最新机场专属优惠码、新人折扣与低价性价比套餐合集。收录光速云8折码AMM、飞猫云8折码flycat888、宇宙云折扣码YUZHOU553等，省钱选购正规专线节点。"
+  h1Title="免费试用、极简低价与机场专属优惠码专区"
+  badge="福利与优惠折扣"
+  iconName="material-symbols:loyalty-rounded"
+  introMarkdown="很多刚接触科学上网的朋友希望先低成本甚至免费试用。市面上的公共免费节点充斥着广告、严重拥堵与流量劫持风险。为此，Airportizi 为大家争取并整理了各大品牌官方直出的【新人首单专属优惠码】与【几元钱即可体验的小流量月付套餐】，助您用一顿快餐的价格畅享企业专线。"
+  subLinks={subLinks}
+  posts={freePosts}
+  canonicalPath="/free/"
+  faqs={faqs}
+/>

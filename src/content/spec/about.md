@@ -1,27 +1,32 @@
-# 关于我 / About Me
+# 关于 Airportizi 机场指南
 
-你好！我是 **夏叶** ，一个在数字世界中默默无闻的一片叶子。
+欢迎访问 **Airportizi 机场指南**（[airportizi.com](https://airportizi.com)）！
 
-## 🛠️ 关于本站
-
-这个网站使用 **Astro** 框架构建，采用了 [Firefly](https://github.com/CuteLeaf/Firefly) 模板，Firefly 是基于 [Fuwari](https://github.com/saicaca/fuwari) 的二次开发。
-
-**Firefly** 是一款基于 Astro 框架和 Fuwari 模板开发的清新美观且现代化个人博客主题模板，专为技术爱好者和内容创作者设计。该主题融合了现代 Web 技术栈，提供了丰富的功能模块和高度可定制的界面，让您能够轻松打造出专业且美观的个人博客网站。
-
-
-**🖥️在线预览： [Firefly - Demo site](https://firefly.cuteleaf.cn/)**
-
-**📝Firefly使用文档： [https://docs-firefly.cuteleaf.cn](https://docs-firefly.cuteleaf.cn/)**
-
-**⭐Firefly开源地址：[https://github.com/CuteLeaf/Firefly](https://github.com/CuteLeaf/Firefly)** 
-
-**⭐Fuwari开源地址：[https://github.com/saicaca/fuwari](https://github.com/saicaca/fuwari)**
-
-::github{repo="CuteLeaf/Firefly"}
-
-::github{repo="saicaca/fuwari"}
+我们是一个专注于海外网络测速、梯子机场技术评测、AI工具访问优化与风险防范的独立技术观测指南。
 
 ---
 
-*感谢你的来访！希望在这里能找到对你有用的内容！*
+## 🎯 我们的宗旨与原则
+
+1. **客观中立的数据实测**：拒绝云评测与虚假宣传。本站所有榜单与评测数据均来源于自动化多点探针（涵盖电信、联通、移动三网晚高峰），真实反映节点的延迟、丢包率与流媒体解锁能力。
+2. **拒绝盲目推崇高价**：我们坚信“适合自己的才是最好的”。无论是低至 **8元/月 60GB 的宇宙云**，还是百兆大流量的二猫云，或是企业级 IEPL 星岛梦，我们都会客观阐述其优缺点与适用场景。
+3. **实时风险防范与避坑预警**：密切追踪全网失联、跑路、域名被封与恶意涨价事件，第一时间发布风险告警，捍卫网友资金安全。
+4. **技术分享与开源文化**：本站前端基于优秀的 Astro 静态架构构建，保留了极致的加载性能与清新设计，全面拥抱现代 Web 最佳实践。
+
+---
+
+## 📡 测速实验室网络环境
+
+- **入口监控点**：中国广州电信千兆、上海联通千兆、杭州移动千兆
+- **出口验证**：香港、日本东京、新加坡、美国洛杉矶、英国伦敦等核心 PoP
+- **核心监测指标**：TCP 握手耗时、晚高峰丢包率、YouTube 4K 连接速率、ChatGPT / Claude 3.7 / Cursor 解锁通过率
+
+---
+
+## 📮 联系我们与商务合作
+
+- **官方网站**：[https://airportizi.com](https://airportizi.com)
+- **风险举报与投稿**：如您发现任何机场出现跑路、失联或严重降级情况，欢迎通过邮件与我们取得联系。
+
+*感谢您的关注与支持！建议将本站加入浏览器书签，常备防失联。*
 

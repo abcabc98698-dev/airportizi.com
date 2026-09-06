@@ -13,7 +13,10 @@ const topTags = [...tags].sort((a, b) => b.count - a.count).slice(0, 10);
 const topMaxCount = topTags.length > 0 ? topTags[0].count : 1;
 ---
 
-<MainGridLayout title={i18n(I18nKey.tags)} description={i18n(I18nKey.allTags)}>
+<MainGridLayout
+  title={i18n(I18nKey.tags)}
+  description="Airportizi 机场指南热门标签聚合，按协议、价格、专线类型、客户端平台快速检索相关测评内容。"
+>
     <!-- 页面标题 -->
     <div class="card-base px-8 py-6 mb-4">
         <div class="text-2xl font-bold text-(--primary) mb-2">

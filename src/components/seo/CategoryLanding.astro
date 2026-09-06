@@ -1,0 +1,252 @@
+---
+import { Icon } from "astro-icon/components";
+import { siteConfig } from "@/config";
+import MainGridLayout from "@/layouts/MainGridLayout.astro";
+import { formatDateToYYYYMMDD } from "@/utils/date-utils";
+import { getPostUrlBySlug, url } from "@/utils/url-utils";
+
+interface SubLink {
+	name: string;
+	url: string;
+	icon?: string;
+	badge?: string;
+}
+
+interface FaqItem {
+	question: string;
+	answer: string;
+}
+
+interface Props {
+	title: string;
+	description: string;
+	h1Title: string;
+	badge: string;
+	iconName: string;
+	introMarkdown: string;
+	subLinks: SubLink[];
+	posts: any[];
+	canonicalPath: string;
+	faqs?: FaqItem[];
+}
+
+const {
+	title,
+	description,
+	h1Title,
+	badge,
+	iconName,
+	introMarkdown,
+	subLinks,
+	posts,
+	canonicalPath,
+	faqs = [],
+} = Astro.props;
+
+const siteUrl = siteConfig.site_url.replace(/\/$/, "");
+const fullCanonicalUrl = `${siteUrl}${canonicalPath}`;
+
+// JSON-LD 结构化数据
+const jsonLdGraph: any[] = [
+	{
+		"@type": "CollectionPage",
+		"@id": `${fullCanonicalUrl}#webpage`,
+		url: fullCanonicalUrl,
+		name: title,
+		description: description,
+		isPartOf: {
+			"@type": "WebSite",
+			"@id": `${siteUrl}/#website`,
+			name: siteConfig.title,
+			url: siteUrl,
+		},
+	},
+	{
+		"@type": "BreadcrumbList",
+		"@id": `${fullCanonicalUrl}#breadcrumb`,
+		itemListElement: [
+			{
+				"@type": "ListItem",
+				position: 1,
+				name: "首页",
+				item: `${siteUrl}/`,
+			},
+			{
+				"@type": "ListItem",
+				position: 2,
+				name: h1Title,
+				item: fullCanonicalUrl,
+			},
+		],
+	},
+];
+
+if (posts.length > 0) {
+	jsonLdGraph.push({
+		"@type": "ItemList",
+		itemListElement: posts.slice(0, 10).map((post, idx) => ({
+			"@type": "ListItem",
+			position: idx + 1,
+			url: `${siteUrl}${getPostUrlBySlug(post.id)}`,
+			name: post.data.title,
+		})),
+	});
+}
+
+if (faqs.length > 0) {
+	jsonLdGraph.push({
+		"@type": "FAQPage",
+		mainEntity: faqs.map((faq) => ({
+			"@type": "Question",
+			name: faq.question,
+			acceptedAnswer: {
+				"@type": "Answer",
+				text: faq.answer,
+			},
+		})),
+	});
+}
+
+const jsonLd = {
+	"@context": "https://schema.org",
+	"@graph": jsonLdGraph,
+};
+---
+
+<MainGridLayout title={title} description={description} suppressH1={true}>
+  <slot slot="head">
+    <script
+      is:inline
+      type="application/ld+json"
+      set:html={JSON.stringify(jsonLd)}
+    />
+  </slot>
+
+  {/* 面包屑导航 */}
+  <nav class="card-base px-6 py-3 mb-4 text-xs md:text-sm flex items-center gap-2 text-50 onload-animation">
+    <a href={url("/")} class="hover:text-(--primary) transition-colors flex items-center gap-1">
+      <Icon name="material-symbols:home-rounded" class="text-base" />
+      <span>首页</span>
+    </a>
+    <span class="text-30">/</span>
+    <span class="text-90 font-medium">{h1Title}</span>
+  </nav>
+
+  {/* 核心栏目 Hero 区块：独立 H1 与主题说明 */}
+  <div class="card-base px-6 md:px-8 py-8 mb-4 onload-animation">
+    <div class="flex flex-wrap items-center gap-2 mb-3">
+      <span class="px-3 py-1 bg-(--primary)/10 text-(--primary) rounded-full text-xs font-semibold flex items-center gap-1.5">
+        <Icon name={iconName} class="text-sm" />
+        {badge}
+      </span>
+      <span class="text-xs text-40">权威收录 · 24H 探针监测</span>
+    </div>
+
+    <h1 class="text-2xl md:text-3xl font-bold text-90 mb-4 leading-tight">
+      {h1Title}
+    </h1>
+
+    <div class="text-sm md:text-base text-70 leading-relaxed space-y-3 mb-6 bg-black/5 dark:bg-white/5 p-4 rounded-xl border border-black/5 dark:border-white/10">
+      <p>{introMarkdown}</p>
+    </div>
+
+    {/* 子栏目入口 / 快捷导航 */}
+    {subLinks.length > 0 && (
+      <div>
+        <div class="text-xs font-semibold text-40 mb-2 uppercase tracking-wider">
+          快捷导航与相关专题
+        </div>
+        <div class="flex flex-wrap gap-2">
+          {subLinks.map((link) => (
+            <a
+              href={link.url}
+              class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs md:text-sm bg-(--btn-regular-bg) hover:bg-(--primary) hover:text-white dark:hover:text-black/80 transition-all active:scale-95"
+            >
+              {link.icon && <Icon name={link.icon} class="text-sm" />}
+              <span>{link.name}</span>
+              {link.badge && (
+                <span class="text-[10px] px-1.5 py-0.2 rounded bg-red-500/20 text-red-500 font-bold">
+                  {link.badge}
+                </span>
+              )}
+            </a>
+          ))}
+        </div>
+      </div>
+    )}
+  </div>
+
+  {/* 栏目收录文章列表 */}
+  <div class="mb-4">
+    <div class="flex items-center justify-between mb-3 px-2">
+      <h2 class="text-lg font-bold text-90 flex items-center gap-2">
+        <Icon name="material-symbols:article-rounded" class="text-(--primary)" />
+        <span>精选内容与深度测评 ({posts.length})</span>
+      </h2>
+      <span class="text-xs text-40">按综合权重排序</span>
+    </div>
+
+    {posts.length > 0 ? (
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {posts.map((post, idx) => (
+          <a
+            href={getPostUrlBySlug(post.id)}
+            class="card-base p-5 flex flex-col justify-between group hover:border-(--primary)/50 transition-all onload-animation"
+            style={`animation-delay: calc(var(--content-delay) + ${idx * 40}ms);`}
+          >
+            <div>
+              <div class="flex items-center gap-2 mb-2">
+                <span class="text-[11px] px-2 py-0.5 rounded bg-(--primary)/10 text-(--primary) font-medium">
+                  {post.data.category || "综合推荐"}
+                </span>
+                <span class="text-xs text-40">
+                  {formatDateToYYYYMMDD(post.data.published)}
+                </span>
+              </div>
+              <h3 class="text-base font-bold text-90 group-hover:text-(--primary) transition-colors line-clamp-2 mb-2">
+                {post.data.title}
+              </h3>
+              <p class="text-xs text-60 line-clamp-2 mb-3">
+                {post.data.description || post.data.title}
+              </p>
+            </div>
+            <div class="flex items-center justify-between pt-2 border-t border-black/5 dark:border-white/5 text-xs text-40">
+              <span class="flex items-center gap-1 group-hover:text-(--primary) transition-colors font-medium">
+                阅读评测
+                <Icon name="material-symbols:arrow-forward-rounded" class="text-sm group-hover:translate-x-1 transition-transform" />
+              </span>
+              <span>{post.data.tags?.slice(0, 2).join(" · ")}</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    ) : (
+      <div class="card-base p-8 text-center text-40">
+        该专题内容持续编纂中，请稍后查阅。
+      </div>
+    )}
+  </div>
+
+  {/* 常见问题 FAQ（仅在有内容时输出，杜绝虚假 Schema） */}
+  {faqs.length > 0 && (
+    <div class="card-base p-6 md:p-8 mb-4 onload-animation">
+      <h2 class="text-lg font-bold text-90 mb-4 flex items-center gap-2">
+        <Icon name="material-symbols:help-outline-rounded" class="text-(--primary)" />
+        <span>常见问题与选购指南 (FAQ)</span>
+      </h2>
+      <div class="space-y-4">
+        {faqs.map((faq) => (
+          <div class="border-b border-black/5 dark:border-white/5 pb-3 last:border-0 last:pb-0">
+            <h3 class="text-sm md:text-base font-semibold text-90 mb-1 flex items-start gap-2">
+              <span class="text-(--primary) font-bold">Q:</span>
+              <span>{faq.question}</span>
+            </h3>
+            <p class="text-xs md:text-sm text-60 pl-5 leading-relaxed">
+              {faq.answer}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  )}
+</MainGridLayout>

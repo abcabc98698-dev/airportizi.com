@@ -54,6 +54,7 @@ interface Props {
 	ogImageHeight?: number;
 	ogImageAlt?: string;
 	hasWallpaper?: boolean;
+	robots?: string;
 }
 
 let {
@@ -67,6 +68,7 @@ let {
 	ogImageHeight: propsOgImageHeight,
 	ogImageAlt: propsOgImageAlt,
 	hasWallpaper = false,
+	robots,
 } = Astro.props;
 
 // apply a class to the body element to decide the height of the banner, only used for initial page load
@@ -201,6 +203,24 @@ const ogImageAlt = propsOgImageAlt ?? pageTitle;
     <meta name="author" content={profileConfig.name} />
 
     <link rel="canonical" href={canonicalUrl} />
+    <meta name="robots" content={robots || "index, follow"} />
+
+    {/* 搜索引擎站长平台所有权验证 Meta 标签（Google, Bing, 百度, 神马, 搜狗） */}
+    {siteConfig.seoVerification?.google && (
+      <meta name="google-site-verification" content={siteConfig.seoVerification.google} />
+    )}
+    {siteConfig.seoVerification?.bing && (
+      <meta name="msvalidate.01" content={siteConfig.seoVerification.bing} />
+    )}
+    {siteConfig.seoVerification?.baidu && (
+      <meta name="baidu-site-verification" content={siteConfig.seoVerification.baidu} />
+    )}
+    {siteConfig.seoVerification?.shenma && (
+      <meta name="shenma-site-verification" content={siteConfig.seoVerification.shenma} />
+    )}
+    {siteConfig.seoVerification?.sogou && (
+      <meta name="sogou_site_verification" content={siteConfig.seoVerification.sogou} />
+    )}
     <meta property="og:site_name" content={siteConfig.title} />
     <meta property="og:locale" content={getOgLocale(lang)} />
     <meta property="og:url" content={canonicalUrl} />

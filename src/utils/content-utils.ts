@@ -14,6 +14,12 @@ async function getRawSortedPosts() {
 		if (a.data.pinned && !b.data.pinned) return -1;
 		if (!a.data.pinned && b.data.pinned) return 1;
 
+		// 如果同为置顶文章，光速云评测排在最前
+		if (a.data.pinned && b.data.pinned) {
+			if (a.id.includes("guangshuyun")) return -1;
+			if (b.id.includes("guangshuyun")) return 1;
+		}
+
 		// 如果置顶状态相同，则按发布日期排序
 		const dateA = new Date(a.data.published);
 		const dateB = new Date(b.data.published);

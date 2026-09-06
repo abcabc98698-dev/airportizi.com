@@ -1,0 +1,307 @@
+---
+import { Icon } from "astro-icon/components";
+import WidgetLayout from "@/components/common/WidgetLayout.astro";
+import type { WidgetComponentConfig } from "@/types/config";
+
+interface Props {
+	class?: string;
+	style?: string;
+	widgetConfig?: WidgetComponentConfig;
+}
+
+const { class: className, style, widgetConfig } = Astro.props;
+const showTitle = widgetConfig?.showTitle !== false;
+
+// 商业合作机场列表配置
+const partners = [
+	{
+		id: "guangshuyun",
+		name: "光速云",
+		isFeatured: true,
+		price: "折合 ¥7.5/月起",
+		tags: [
+			{ text: "👑 站长主推", class: "bg-(--primary) text-white font-semibold" },
+			{
+				text: "5年老牌",
+				class: "bg-(--primary)/15 text-(--primary) font-medium",
+			},
+			{
+				text: "VLESS专线",
+				class:
+					"bg-neutral-200/60 dark:bg-neutral-700/60 text-neutral-700 dark:text-neutral-300",
+			},
+			{
+				text: "全端自研APP",
+				class:
+					"bg-neutral-200/60 dark:bg-neutral-700/60 text-neutral-700 dark:text-neutral-300",
+			},
+		],
+		coupon: "AMM",
+		couponLabel: "8折: AMM",
+		officialUrl: "https://sahude.gsyvipaff.com/#/?code=keqgvT5Y",
+		reviewUrl: "/posts/guangshuyun-review/",
+	},
+	{
+		id: "weifeng",
+		name: "微风网络",
+		isFeatured: false,
+		price: "折合 ¥7.0/月",
+		tags: [
+			{
+				text: "轻量高稳",
+				class: "bg-sky-500/15 text-sky-600 dark:text-sky-400 font-medium",
+			},
+			{
+				text: "50GB/月",
+				class:
+					"bg-neutral-200/50 dark:bg-neutral-700/50 text-neutral-600 dark:text-neutral-300",
+			},
+			{
+				text: "IEPL专线",
+				class:
+					"bg-neutral-200/50 dark:bg-neutral-700/50 text-neutral-600 dark:text-neutral-300",
+			},
+		],
+		coupon: "wf888",
+		couponLabel: "券: wf888",
+		officialUrl: "https://guangs.weifengaff.top/#/?code=VjRz832G",
+		reviewUrl: "/posts/brand-weifeng-review/",
+	},
+	{
+		id: "feimaoyun",
+		name: "飞猫云",
+		isFeatured: false,
+		price: "折合 ¥7.0/月",
+		tags: [
+			{
+				text: "入门首选",
+				class:
+					"bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 font-medium",
+			},
+			{
+				text: "50GB/月",
+				class:
+					"bg-neutral-200/50 dark:bg-neutral-700/50 text-neutral-600 dark:text-neutral-300",
+			},
+			{
+				text: "便宜省心",
+				class:
+					"bg-neutral-200/50 dark:bg-neutral-700/50 text-neutral-600 dark:text-neutral-300",
+			},
+		],
+		coupon: "feimao",
+		couponLabel: "券: feimao",
+		officialUrl: "https://guangs.feimaoyunaff.top/#/?code=Kx2P4q",
+		reviewUrl: "/posts/brand-feimaoyun-review/",
+	},
+	{
+		id: "xingdaomeng",
+		name: "星岛梦",
+		isFeatured: false,
+		price: "折合 ¥8.0/月",
+		tags: [
+			{
+				text: "不限时神机",
+				class:
+					"bg-purple-500/15 text-purple-600 dark:text-purple-400 font-medium",
+			},
+			{
+				text: "永不清零",
+				class:
+					"bg-neutral-200/50 dark:bg-neutral-700/50 text-neutral-600 dark:text-neutral-300",
+			},
+			{
+				text: "容灾备用",
+				class:
+					"bg-neutral-200/50 dark:bg-neutral-700/50 text-neutral-600 dark:text-neutral-300",
+			},
+		],
+		coupon: "nmw888",
+		couponLabel: "9折: nmw888",
+		officialUrl: "https://guangs.xingdaomeng.com/#/?code=1TynBYnR",
+		reviewUrl: "/posts/brand-xingdaomeng-review/",
+	},
+	{
+		id: "weitu",
+		name: "唯兔云",
+		isFeatured: false,
+		price: "¥14.9/月",
+		tags: [
+			{
+				text: "纯月付标杆",
+				class: "bg-rose-500/15 text-rose-600 dark:text-rose-400 font-medium",
+			},
+			{
+				text: "100GB大流量",
+				class:
+					"bg-neutral-200/50 dark:bg-neutral-700/50 text-neutral-600 dark:text-neutral-300",
+			},
+			{
+				text: "60+节点优化",
+				class:
+					"bg-neutral-200/50 dark:bg-neutral-700/50 text-neutral-600 dark:text-neutral-300",
+			},
+		],
+		coupon: "weitu666",
+		couponLabel: "券: weitu666",
+		officialUrl: "https://guangs.weituaff.top/#/?code=w98Q9B5D",
+		reviewUrl: "/posts/brand-weitu-review/",
+	},
+];
+---
+
+<WidgetLayout
+  name="商业机场合作区"
+  showTitle={showTitle}
+  id="commercial-partners"
+  class={className}
+  style={style}
+>
+  <span
+    slot="title-icon"
+    class="text-[11px] font-medium px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 flex items-center gap-1 shadow-xs"
+  >
+    <Icon name="material-symbols:verified-rounded" class="text-xs shrink-0" />
+    <span class="whitespace-nowrap">官方精选</span>
+  </span>
+
+  <div class="flex flex-col gap-2.5">
+    {partners.map((partner) => (
+      <div
+        class:list={[
+          "rounded-xl p-2.5 transition-all duration-200 group",
+          partner.isFeatured
+            ? "border border-(--primary)/50 bg-gradient-to-br from-(--primary)/10 via-(--primary)/5 to-transparent shadow-xs hover:border-(--primary) hover:shadow-md"
+            : "border border-neutral-200/80 dark:border-neutral-800 bg-neutral-50/50 dark:bg-neutral-800/30 hover:bg-neutral-50 dark:hover:bg-neutral-800/60 hover:border-(--primary)/40"
+        ]}
+      >
+        {/* 第一行：品牌名称 + 价格（左右分布，严格禁止竖向折行） */}
+        <div class="flex items-center justify-between gap-2">
+          <span class="font-bold text-base text-neutral-900 dark:text-neutral-100 group-hover:text-(--primary) transition-colors whitespace-nowrap shrink-0">
+            {partner.name}
+          </span>
+          <span
+            class:list={[
+              "text-xs font-bold px-2 py-0.5 rounded-md shrink-0 whitespace-nowrap",
+              partner.isFeatured
+                ? "text-amber-600 dark:text-amber-400 bg-amber-500/10 border border-amber-500/25"
+                : "text-neutral-700 dark:text-neutral-300 bg-neutral-200/60 dark:bg-neutral-700/60"
+            ]}
+          >
+            {partner.price}
+          </span>
+        </div>
+
+        {/* 第二行：核心标签矩阵（自然流式排版，完美适配紧凑侧栏） */}
+        <div class="flex flex-wrap gap-1 mt-1.5 mb-2">
+          {partner.tags.map((tag) => (
+            <span class:list={["text-[10px] px-1.5 py-0.5 rounded shrink-0 whitespace-nowrap", tag.class]}>
+              {tag.text}
+            </span>
+          ))}
+        </div>
+
+        {/* 第三行：优惠码一键复制 + 评测详情 + 直达通道 */}
+        <div
+          class:list={[
+            "flex items-center justify-between gap-1.5 pt-2 border-t",
+            partner.isFeatured
+              ? "border-(--primary)/20"
+              : "border-neutral-200/70 dark:border-neutral-800"
+          ]}
+        >
+          <button
+            type="button"
+            class="partner-copy-btn flex items-center gap-1 text-[11px] font-mono px-2 py-0.5 rounded bg-white/90 dark:bg-neutral-800 hover:bg-(--primary)/10 text-neutral-700 dark:text-neutral-200 border border-neutral-200/80 dark:border-neutral-700 transition-colors cursor-pointer shrink-0"
+            data-coupon={partner.coupon}
+            title="点击复制优惠码"
+          >
+            <Icon name="material-symbols:content-copy-outline-rounded" class="text-xs text-(--primary) shrink-0" />
+            <span class="coupon-text whitespace-nowrap">{partner.couponLabel}</span>
+          </button>
+
+          <div class="flex items-center gap-1.5 shrink-0">
+            {partner.reviewUrl && (
+              <a
+                href={partner.reviewUrl}
+                class="text-xs text-neutral-500 hover:text-(--primary) hover:underline transition-colors px-1 py-0.5 whitespace-nowrap"
+              >
+                评测
+              </a>
+            )}
+            <a
+              href={partner.officialUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class:list={[
+                "text-xs font-semibold px-2.5 py-1 rounded-lg flex items-center gap-1 active:scale-95 transition-all shadow-xs shrink-0 whitespace-nowrap",
+                partner.isFeatured
+                  ? "btn-primary"
+                  : "btn-regular hover:text-(--primary)"
+              ]}
+            >
+              <span>{partner.isFeatured ? "直达官网" : "直达"}</span>
+              <Icon name="fa7-solid:arrow-up-right-from-square" class="text-[9px] shrink-0" />
+            </a>
+          </div>
+        </div>
+      </div>
+    ))}
+
+    {/* 卡片底栏：全局导航指引 */}
+    <div class="pt-1 pb-0.5 text-center">
+      <a
+        href="/posts/comparison-airports-pricing-lines/"
+        class="inline-flex items-center gap-1 text-[11px] text-neutral-500 dark:text-neutral-400 hover:text-(--primary) transition-colors font-medium group whitespace-nowrap"
+      >
+        <span>查看更多机场横评与榜单</span>
+        <Icon name="material-symbols:arrow-forward-rounded" class="text-xs group-hover:translate-x-0.5 transition-transform shrink-0" />
+      </a>
+    </div>
+  </div>
+</WidgetLayout>
+
+<!-- 优惠码一键点击复制交互脚本 -->
+<script is:inline>
+  function initPartnerCopyButtons() {
+    const buttons = document.querySelectorAll(".partner-copy-btn");
+    buttons.forEach((btn) => {
+      if (btn.dataset.initialized) return;
+      btn.dataset.initialized = "true";
+
+      btn.addEventListener("click", async (e) => {
+        e.preventDefault();
+        const coupon = btn.dataset.coupon;
+        if (!coupon) return;
+
+        const textSpan = btn.querySelector(".coupon-text");
+        const originalText = textSpan ? textSpan.textContent : "";
+
+        try {
+          await navigator.clipboard.writeText(coupon);
+          if (textSpan) {
+            textSpan.textContent = "已复制 ✓";
+            btn.classList.add("text-emerald-600", "dark:text-emerald-400", "border-emerald-500/50");
+            setTimeout(() => {
+              textSpan.textContent = originalText;
+              btn.classList.remove("text-emerald-600", "dark:text-emerald-400", "border-emerald-500/50");
+            }, 1800);
+          }
+        } catch (err) {
+          console.error("复制优惠码失败: ", err);
+        }
+      });
+    });
+  }
+
+  // 页面初次加载时初始化
+  initPartnerCopyButtons();
+
+  // Swup 页面切换完成后重新初始化
+  if (!window.__partnerCopyInit) {
+    window.__partnerCopyInit = true;
+    document.addEventListener("swup:contentReplaced", () => {
+      setTimeout(initPartnerCopyButtons, 100);
+    });
+  }
+</script>

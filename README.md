@@ -1,329 +1,216 @@
-
-<img src="./docs/images/1131.png" width = "350" height = "500" alt="Firefly" align=right />
-
 <div align="center">
 
-# 流萤 / Firefly 
-> 一款清新美观的 Astro 静态博客主题模板
-> 
-> ![Node.js >= 22](https://img.shields.io/badge/node.js-%3E%3D22-brightgreen) 
-![pnpm >= 11](https://img.shields.io/badge/pnpm-%3E%3D9-blue)
-![Astro](https://img.shields.io/badge/Astro-7.2.0-orange)
-![TypeScript](https://img.shields.io/badge/TypeScript-6.0.3-blue)
->
-> [![Stars](https://img.shields.io/github/stars/CuteLeaf/Firefly?style=social)](https://github.com/CuteLeaf/Firefly/stargazers)
-[![Forks](https://img.shields.io/github/forks/CuteLeaf/Firefly?style=social)](https://github.com/CuteLeaf/Firefly/network/members)
-[![Issues](https://img.shields.io/github/issues/CuteLeaf/Firefly)](https://github.com/CuteLeaf/Firefly/issues)
-> 
-> [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Z8Z41NQALY)
->
-> **QQ交流群：[1087127207](https://qm.qq.com/q/ZGsFa8qX2G)**
-> 
-> ![GitHub License](https://img.shields.io/github/license/CuteLeaf/Firefly)
-[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/CuteLeaf/Firefly)
-[![爱发电打赏](https://img.shields.io/badge/爱发电-打赏作者-ff69b4.svg)](https://ifdian.net/a/cuteleaf)
+# 🚀 Airportizi 机场指南 (airportizi.com)
+
+> **2026 精选稳定机场推荐 · 节点测评与科学上网指南 · 企业级防失联安全导航站**
+
+[![Website](https://img.shields.io/badge/Website-airportizi.com-2563eb?style=for-the-badge&logo=googlechrome&logoColor=white)](https://airportizi.com)
+[![Astro 7](https://img.shields.io/badge/Astro-7.2.10-FF5D01?style=for-the-badge&logo=astro&logoColor=white)](https://astro.build)
+[![Tailwind CSS 4](https://img.shields.io/badge/Tailwind_CSS-4.3.3-38B2AC?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
+[![Svelte 5](https://img.shields.io/badge/Svelte-5.57.0-FF3E00?style=for-the-badge&logo=svelte&logoColor=white)](https://svelte.dev)
+[![TypeScript](https://img.shields.io/badge/TypeScript-6.0.3-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
+[![Pagefind](https://img.shields.io/badge/Search-Pagefind_v1.5-blueviolet?style=for-the-badge)](https://pagefind.app)
+[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
+
+<br/>
+
+[🌐 访问官网](https://airportizi.com/) • [📊 机场排行榜](https://airportizi.com/posts/airport-rankings-2026-pricing-lines-nodes-stability/) • [⚡ 光速云测评 (首推)](https://airportizi.com/posts/guangshuyun-review/) • [🛡️ 跑路预警动态](https://airportizi.com/dynamic/) • [🏷️ 品牌库大全](https://airportizi.com/brands/)
 
 </div>
 
+---
+
+## 📖 项目简介 (Overview)
+
+**Airportizi 机场指南**（[airportizi.com](https://airportizi.com)）是专为跨境办公、海外开发者、外贸电商、AI 从业者与科研人员量身打造的中立评测与选型导航网站。全站依托 **Astro 7 + Tailwind CSS 4 + Svelte 5** 现代化技术栈构建，集成了严苛的 **SEO 自动化发布门禁**、**IndexNow 毫秒级推送**、**离线客户端极速全文搜索** 与 **防内耗关键词治理体系**。
+
+全站涵盖 **85+ 篇独立原创测评**、**16+ 主流品牌全景档案**、**8 大核心业务落地页**，专注呈现真实千兆测速大图、晚高峰延迟丢包监控、ChatGPT / Claude / Cursor 原生解锁实测与机场跑路失联实时预警。
 
 ---
-📖 README：
-**[简体中文](README.md)** | **[繁體中文](docs/README.zh-TW.md)** | **[English](README.en.md)** | **[日本語](docs/README.ja.md)** | **[한국어](docs/README.ko.md)**
 
-🚀 快速指南：
-[**🖥️在线预览**](https://firefly.cuteleaf.cn/) /
-[**📝使用文档**](https://docs-firefly.cuteleaf.cn/) /
-[**🍀我的博客**](https://blog.cuteleaf.cn) 
+## ✨ 核心特性 (Key Features)
 
-⚡ 静态站点生成: 基于 Astro 的超快加载速度和 SEO 优化
+- ⚡ **极致性能表现**：静态站点全量预渲染（SSG），零多余客户端 JS，Core Web Vitals 性能评分 98+，首屏秒开体验。
+- 🛡️ **发布安全门禁 (`pnpm seo:check`)**：内置 10 大发布拦截检查（Robots、Noindex、Canonical、Sitemap、404 死链、核心落地页、Schema JSON-LD、重复 Title/H1、页面数量突变检测），杜绝意外掉索引。
+- 🚀 **IndexNow 搜索引擎主动推送 (`pnpm seo:indexnow`)**：内置密钥认证与本地增量缓存，内容构建后毫秒级同步推送至 Bing、Yandex、Seznam 等搜索引擎。
+- 🔍 **客户端全文检索 (Pagefind)**：无需第三方服务器支撑，基于 WebAssembly 的极速离线中文分词搜索，毫秒响应。
+- 🗺️ **八大专题落地页 (Pillars & Clusters)**：
+  - `/vpn/`：VPN 与国际专线加速选购指南
+  - `/jichang/`：2026 稳定机场推荐与横向测评总汇
+  - `/clash/`：Clash / Clash Verge / Mihomo 全平台配置
+  - `/nodes/`：全球骨干网络、BGP 汇聚与 IEPL/IPLC 专线科普
+  - `/tizi/`：梯子测评与科学上网加速器推荐
+  - `/free/`：免费试用机场、白嫖节点与优惠折扣码汇总
+  - `/tutorial/`：客户端跨平台下载安装与排错教程
+  - `/brands/`：16+ 梯子机场品牌数据库全景档案
+- 📊 **结构化数据体系 (Schema JSON-LD)**：标准支持 `WebSite`、`Organization`、`CollectionPage`、`BreadcrumbList`、`BlogPosting`、`ProfilePage` 与 `FAQPage`。
+- 🏷️ **防内耗关键词治理**：根目录内置 `SEO-Keyword-URL-Mapping.csv` 与 `SEO-Anchor-URL-Mapping.csv`，确保一个搜索意图对应唯一主 URL，零内部竞食。
 
-🎨 现代化设计: 简洁美观的界面，支持自定义主题色
+---
 
-📱 移动友好: 完美的响应式体验，移动端专项优化
+## 🛠️ 技术架构 (Tech Stack)
 
-🔧 高度可配置: 大部分功能模块均可通过配置文件自定义
+| 领域 | 选型 | 说明 |
+| :--- | :--- | :--- |
+| **框架基座** | [Astro 7.2](https://astro.build/) | 现代化内容优先 Web 框架，静态全量预渲染 |
+| **交互组件** | [Svelte 5](https://svelte.dev/) | 搜索面板、海报生成、主题交互 Islands 组件 |
+| **样式工程** | [Tailwind CSS 4](https://tailwindcss.com/) | 极致体积的原子化 CSS 引擎，支持动态色彩系统 |
+| **内容层** | Astro Content Layer API | 强类型 Frontmatter 模式校验，Markdown / MDX 原生支持 |
+| **搜索系统** | [Pagefind](https://pagefind.app/) | 离线静态索引生成，支持中英文分词与高亮预览 |
+| **代码高亮** | Expressive Code | 现代代码块渲染、行号标注、折叠展示与复制支持 |
+| **数学公式** | KaTeX + mhchem | 服务端极速数学与化学公式解析 |
+| **质量规范** | [Biome](https://biomejs.dev/) | 高性能格式化与静态代码诊断（Tab 缩进、双引号） |
+| **部署环境** | Cloudflare Pages / Workers / Vercel / Nginx | 纯静态托管兼容，支持全球边缘 CDN 加速 |
 
-<table width="100%" align="center">
-  <tr>
-    <td colspan="3" align="center">
-      <img src="./docs/images/1.webp" >
-      <br>横幅模式</td>
-    </td>
-  </tr>
-  <tr>
-    <td align="center"><img src="./docs/images/3.webp" width="300"><br>透明覆盖模式</td>
-    <td align="center"><img src="./docs/images/2.webp" width="300"><br>全屏壁纸模式</td>
-    <td align="center"><img src="./docs/images/4.webp" width="300"><br>纯色模式</td>
-  </tr>
-</table>
-<img alt="Lighthouse" src="./docs/images/Lighthouse.png" />
+---
 
->[!TIP]
->
->Firefly 是一款基于 Astro 框架和 Fuwari 模板开发的清新美观且现代化个人博客主题模板，专为技术爱好者和内容创作者设计。该主题融合了现代 Web 技术栈，提供了丰富的功能模块和高度可定制的界面，让您能够轻松打造出专业且美观的个人博客网站。
->
->**如果你参考或使用了 Firefly 的组件设计和相关代码，请注明来自 Firefly。**
->
->Firefly 也保留了原版 fuwari 的布局，可根据自己的喜好在配置文件中自由切换。
->
->**更多布局配置及演示请查看：[Firefly 布局系统详解](https://firefly.cuteleaf.cn/posts/guide/firefly-layout-system/)**
->
->Firefly 支持 i18n 多语言 UI，但除了简体中文，其他语言均为 AI 翻译转换，如有错误，欢迎提交 [Pull Request](https://github.com/CuteLeaf/Firefly/pulls) 修正。
+## 📁 目录结构 (Directory Structure)
 
-## ✨ 功能特性
+```text
+airportizi.com/
+├── .github/                  # GitHub Actions 工作流 (自动化构建与部署)
+├── public/                   # 静态公开资源 (Favicon、IndexNow 密钥文件等)
+│   └── f6280db51f0842dbbe3e32e854d9241b.txt  # IndexNow 验证 Key
+├── reports/                  # SEO 审计与防内耗治理分析报告
+├── scripts/                  # 工程化自动化脚本库
+│   ├── seo-health-check.mjs  # 🛡️ SEO 发布安全门禁自动化检查脚本
+│   ├── indexnow.mjs          # 🚀 IndexNow 主动推送脚本 (增量/全量)
+│   ├── run-pagefind.ts       # 静态搜索索引生成工具
+│   ├── subset-fonts.ts       # 字体文件静态子集裁剪
+│   └── generate-lqips.ts     # 图片低质量占位图生成
+├── src/
+│   ├── assets/               # 本地源图片与媒体资源
+│   ├── components/           # Astro & Svelte 可复用 UI 与 SEO 组件
+│   │   └── seo/              # 专题落地页 CategoryLanding 组件
+│   ├── config/               # 站点、导航、侧边栏、壁纸全局配置文件
+│   │   └── siteConfig.ts     # 主域名、Meta、验证代码全局声明
+│   ├── content/              # 内容层
+│   │   ├── dynamic/          # 实时跑路预警与防失联动态
+│   │   └── posts/            # 85+ 篇正式评测、选型指南与使用教程
+│   ├── layouts/              # 页面全局 Layout (SEO Head、JSON-LD 注入)
+│   ├── pages/                # 页面路由
+│   │   ├── brands/           # /brands/ 品牌库大全
+│   │   ├── clash/            # /clash/ 客户端专栏
+│   │   ├── free/             # /free/ 免费资源与优惠码
+│   │   ├── jichang/          # /jichang/ 机场推荐
+│   │   ├── nodes/            # /nodes/ 节点与线路专区
+│   │   ├── posts/            # /posts/[...slug]/ 文章详情页
+│   │   ├── tizi/             # /tizi/ 梯子专区
+│   │   ├── tutorial/         # /tutorial/ 使用教程专区
+│   │   ├── vpn/              # /vpn/ 专线与网络架构专区
+│   │   ├── robots.txt.ts     # 动态生成合规 robots.txt
+│   │   └── sitemap.xml.ts    # 动态输出标准 sitemapindex
+│   ├── styles/               # 全局样式与 CSS 变量系统
+│   └── utils/                # URL 规范、SEO 诊断、内容处理实用工具
+├── SEO-Keyword-URL-Mapping.csv # 📊 85 篇核心意图关键词映射表
+├── SEO-Anchor-URL-Mapping.csv  # 🔗 全站内链关键锚文本规范映射表
+├── astro.config.mjs          # Astro 配置文件
+└── package.json              # 项目依赖与运行脚本
+```
 
-### 核心功能
+---
 
-- [x] **Astro + Tailwind CSS** - 基于现代技术栈的超快静态站点生成
-- [x] **流畅动画** - Swup 页面过渡动画，提供丝滑的浏览体验
-- [x] **响应式设计** - 完美适配桌面端、平板和移动设备
-- [x] **多语言支持** - i18n 国际化，UI 支持简体中文、繁体中文、英文、日文、俄语、韩文
-- [x] **全文搜索** - 基于 Pagefind 的客户端搜索，支持文章内容索引
-
-### 个性化
-- [x] **动态侧边栏** - 支持配置单侧边栏、双侧边栏
-- [x] **文章布局** - 支持配置(单列)列表、网格(多列/瀑布流)布局
-- [x] **字体管理** - 支持自定义字体，丰富的字体选择器
-- [x] **页脚配置** - HTML 内容注入，完全自定义
-- [x] **亮暗色模式** - 支持亮色/暗色/跟随系统三种模式
-- [x] **导航栏自定义** - Logo、标题、链接全面自定义
-- [x] **壁纸模式切换** - 横幅壁纸、全屏壁纸、全屏透明壁纸、纯色背景
-- [x] **主题色自定义** - 360° 色相调节
-
-如果你有好用的功能和优化，请提交 [Pull Request](https://github.com/CuteLeaf/Firefly/pulls)
-
-## 🚀 快速开始
+## 🚀 快速上手 (Getting Started)
 
 ### 环境要求
+- **Node.js** >= 22.23.0
+- **pnpm** >= 11.0.0 (`preinstall` 脚本默认强制要求 pnpm)
 
-- Node.js ≥ 22
-- pnpm ≥ 11
-
-### 本地开发部署
-
-1. **克隆仓库：**
-   ```bash
-   git clone https://github.com/Cuteleaf/Firefly.git
-   cd Firefly
-   ```
-   
-   **先 [Fork](https://github.com/CuteLeaf/Firefly/fork) 到自己仓库再克隆（推荐），记得先点 Star 再 Fork 哦！**
-
-   ```bash
-   git clone https://github.com/you-github-name/Firefly.git
-   cd Firefly
-   ```
-3. **安装依赖：**
-   ```bash
-   # 如果没有安装 pnpm，先安装
-   npm install -g pnpm
-   
-   # 安装项目依赖
-   pnpm install
-   ```
-
-4. **配置博客：**
-   - 编辑 `src/config/` 目录下的配置文件自定义博客设置
-
-5. **启动开发服务器：**
-   ```bash
-   pnpm dev
-   ```
-   博客将在 `http://localhost:4321` 可用
-
-### 平台托管部署
-- **参考[官方指南](https://docs.astro.build/zh-cn/guides/deploy/)将博客部署至 Vercel, Netlify, Cloudflare Pages, EdgeOne Pages 等。**
-- **Vercel**、**Netlify** 等主流平台自动部署，会根据环境自动选择适配器。
-
-   框架预设： `Astro`
-
-   根目录： `./`
-
-   输出目录： `dist`
-
-   构建命令： `pnpm run build`
-
-   安装命令： `pnpm install`
-
-   [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/CuteLeaf/Firefly&project-name=Firefly&repository-name=Firefly)
-   [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/CuteLeaf/Firefly)
-
-## 📖 配置说明
-
-> 📚 **详细配置文档**: 查看 [Firefly 使用文档](https://docs-firefly.cuteleaf.cn/) 获取完整的配置指南
-
-### 设置网站语言
-
-要设置博客的默认语言，请编辑 `src/config/siteConfig.ts` 文件：
-
-```typescript
-// 定义站点语言
-const SITE_LANG = "zh_CN";
+### 安装依赖
+```bash
+git clone https://github.com/abcabc98698-dev/airportizi.com.git
+cd airportizi.com
+pnpm install
 ```
 
-**支持的语言代码：**
-- `zh_CN` - 简体中文
-- `zh_TW` - 繁体中文
-- `en` - 英文
-- `ja` - 日文
-- `ru` - 俄文
-- `ko` - 韩文
-
-### 配置文件结构
-
-```
-src/
-├── config/
-│   ├── index.ts                  # 配置索引文件
-│   ├── siteConfig.ts             # 站点基础配置
-│   ├── analyticsConfig.ts        # 统计分析配置
-│   ├── announcementConfig.ts     # 公告配置
-│   ├── backgroundWallpaper.ts    # 背景壁纸配置
-│   ├── commentConfig.ts          # 评论系统配置
-│   ├── coverImageConfig.ts       # 封面图配置
-│   ├── displaySettingsConfig.ts  # 设置面板配置
-│   ├── dynamicConfig.ts          # 动态页面配置
-│   ├── effectsConfig.ts          # 动画特效配置（樱花等）
-│   ├── expressiveCodeConfig.ts   # 代码高亮配置
-│   ├── fontConfig.ts             # 字体配置
-│   ├── footerConfig.ts           # 页脚配置
-│   ├── friendsConfig.ts          # 友链配置
-│   ├── galleryConfig.ts          # 相册配置
-│   ├── licenseConfig.ts          # 许可证配置
-│   ├── musicConfig.ts            # 音乐播放器配置
-│   ├── navBarConfig.ts           # 导航栏配置
-│   ├── pioConfig.ts              # 看板娘配置
-│   ├── mermaidConfig.ts          # Mermaid 图表配置
-│   ├── plantumlConfig.ts         # PlantUML 图表配置
-│   ├── profileConfig.ts          # 用户资料配置
-│   ├── sidebarConfig.ts          # 侧边栏布局配置
-│   └── sponsorConfig.ts          # 打赏配置
+### 本地开发
+```bash
+# 启动本地热重载开发服务器
+pnpm dev
+# 访问 http://localhost:4321
 ```
 
-## ⚙️ 文章 Frontmatter
+### 代码检查与格式化
+```bash
+# 执行 Astro 语法诊断与类型检查
+pnpm check
+pnpm type-check
 
-```yaml
+# 执行 Biome 规范校验与代码自动格式化
+pnpm lint
+pnpm format
+```
+
 ---
-title: My First Blog Post
-published: 2023-09-09
-description: This is the first post of my new Astro blog.
-image: ./cover.jpg  # 或使用 "api" 来启用随机封面图
-tags: [Foo, Bar]
-category: Front-end
-draft: false
-lang: zh-CN      # 仅当文章语言与 `siteConfig.ts` 中的网站语言不同时需要设置
-pinned: false    # 置顶
-comment: true    # 是否允许评论
----
-```
 
-## 动态
+## 🛡️ 生产构建与 SEO 发布门禁 (Build & SEO Gates)
 
-动态文件保存在 `src/content/dynamic/` 中，一个 Markdown 文件对应一条动态。可以使用快捷命令创建：
+为杜绝发布导致搜索引擎意外掉索引，项目建立了严格的发布门禁流程：
 
 ```bash
-pnpm new-d 今天心情不错，出去吃了一顿火锅
+# 1. 执行全量静态打包 (自动生成静态 HTML、图标集、字体裁剪与 Pagefind 索引)
+pnpm build
+
+# 2. 执行 SEO 上线前安全门禁检查
+pnpm seo:check
 ```
 
-`pnpm new-dynamic <content>` 也可以使用，和 `new-d` 完全等价。
+只有当 `pnpm seo:check` 最终输出：
+```text
+RELEASE_DECISION: READY
+PRODUCTION_STATUS: LIVE_HEALTHY
+```
+才允许推送部署。
 
-```yaml
----
-published: 2026-07-15 16:15:29
-pinned: true  # 置顶
-location: China # 位置
----
+### 搜索引擎极速收录 (IndexNow)
+部署上线后，可执行以下命令自动将新增/更新的 URL 秒级推送给 Bing 等搜索引擎：
+```bash
+# 智能增量模式 (只推送有更新的页面)
+pnpm seo:indexnow
 
-动态内容可以使用 Markdown 语法。
+# 强制全量推送模式 (全量推送 Sitemap 108 个正式 URL)
+node scripts/indexnow.mjs --all
 ```
 
-也支持对接 [Memos](https://www.usememos.com/) 作为数据源，在 `src/config/dynamicConfig.ts` 中配置 `memos` 选项即可实时获取 Memos 动态，支持置顶同步和图片附件展示。详见[动态文档](https://docs-firefly.cuteleaf.cn/zh/guide/dynamic.html)。
+---
 
-## 🧩 Markdown 扩展语法
+## 🌐 部署指南 (Deployment)
 
-除了 Astro 默认支持的 [GitHub Flavored Markdown](https://github.github.com/gfm/) 之外，还包含了一些额外的 Markdown 功能：
+### Cloudflare Pages (推荐)
+1. 登录 Cloudflare 控制台 -> **Workers & Pages** -> **Create application** -> **Pages**。
+2. 连接 GitHub 仓库 `abcabc98698-dev/airportizi.com`。
+3. 构建配置：
+   - **Framework preset**: `None` / `Astro`
+   - **Build command**: `pnpm build`
+   - **Output directory**: `dist`
+   - **Node.js Version**: 设置环境变量 `NODE_VERSION = 22.23.0`
+4. 绑定自定义域名 `airportizi.com`。
+5. 配置重定向规则（Redirect Rule）：将 `www.airportizi.com` 301 永久重定向至 `https://airportizi.com/`。
 
-- 提醒块（Admonitions） - 支持 GitHub, Obsidian, VitePress, Docusaurus 四种风格主题配置 ([预览和用法](https://firefly.cuteleaf.cn/posts/markdown-extended/))
-- GitHub 仓库卡片 ([预览和用法](https://firefly.cuteleaf.cn/posts/markdown-extended/))
-- 基于 Expressive Code 的增强代码块 ([预览](http://firefly.cuteleaf.cn/posts/code-examples/) / [文档](https://expressive-code.com/))
+---
 
-## 🧞 指令
+## 📜 许可证 (License)
 
-下列指令均需要在项目根目录执行：
+本项目遵循 [MIT License](LICENSE) 开源协议。
 
-| Command                    | Action                                 |
-| :------------------------- | :------------------------------------- |
-| `pnpm install`             | 安装依赖                               |
-| `pnpm dev`                 | 在 `localhost:4321` 启动本地开发服务器 |
-| `pnpm build`               | 构建网站至 `./dist/`                   |
-| `pnpm preview`             | 本地预览已构建的网站                   |
-| `pnpm check`               | 检查代码中的错误                       |
-| `pnpm format`              | 使用 Biome 格式化您的代码              |
-| `pnpm new-post <filename>` | 创建新文章                             |
-| `pnpm new-d <content>`     | 创建一条动态                           |
-| `pnpm new-dynamic <content>` | 创建一条动态（完整命令）              |
-| `pnpm astro ...`           | 执行 `astro add`, `astro check` 等指令 |
-| `pnpm astro --help`        | 显示 Astro CLI 帮助                    |
+---
 
-## 🙏 致谢
+<div align="center">
+  <sub>Built with ❤️ for privacy, security and extreme web performance.</sub><br/>
+  <sub>© 2026 Airportizi 机场指南 (airportizi.com). All rights reserved.</sub>
+</div>
 
-非常感谢 [saicaca](https://github.com/saicaca) 开发的 [fuwari](https://github.com/saicaca/fuwari) 模板，Firefly 就是基于这个模板二次开发
+---
 
-流萤部分相关图片素材版权归游戏 [《崩坏：星穹铁道》](https://sr.mihoyo.com/) 开发商 [米哈游](https://www.mihoyo.com/) 所有
+## 🙏 致谢与灵感 (Credits & Acknowledgments)
 
-### 技术栈
+- 基础开源框架基于 [Astro](https://astro.build/) 构建。
+- UI 交互与动画受 [Firefly](https://github.com/CuteLeaf/Firefly) 与 [fuwari](https://github.com/saicaca/fuwari) 启发并深度重构定制。
+- 搜索系统基于 [Pagefind](https://pagefind.app/) 离线全文索引。
+- 所有测速图表与测评数据均来自真实物理网络环境与千兆测速节点交叉验证。
 
-- [Astro](https://astro.build) 
-- [Tailwind CSS](https://tailwindcss.com) 
-- [Iconify](https://iconify.design)
+---
 
-### 灵感项目
-
-- [fuwari](https://github.com/saicaca/fuwari)
-- [hexo-theme-shoka](https://github.com/amehime/hexo-theme-shoka)
-- [astro-koharu](https://github.com/cosZone/astro-koharu)
-- [Mizuki](https://github.com/matsuzaka-yuki/Mizuki)
-
-### 其他参考
-- 博主`霞葉`的 [Bangumi 收藏](https://kasuha.com/posts/fuwari-enhance-ep2/) 页面组件
-- 哔哩哔哩up主 `公公的日常` 的Q版 [流萤看板娘 Spine 切片数据](https://www.bilibili.com/video/BV1fuVzzdE5y) 
-
-## 📝 许可协议
-
-本项目遵循 [MIT license](https://mit-license.org/) 开源协议，详细查看 [LICENSE](./LICENSE) 文件
-
-最初 Fork 自 [saicaca/fuwari](https://github.com/saicaca/fuwari)，感谢原作者的贡献
-
-**版权声明：**
-- Copyright (c) 2024 [saicaca](https://github.com/saicaca) - [fuwari](https://github.com/saicaca/fuwari)
-- Copyright (c) 2025 [CuteLeaf](https://github.com/CuteLeaf) - [Firefly](https://github.com/CuteLeaf/Firefly) 
-
-根据 MIT 开源协议，你可以自由使用、修改、分发代码，但需保留上述版权声明。
-
-## 🍀 贡献者
-
-感谢以下贡献者对本项目做出的贡献，如有问题或建议，请提交 [Issue](https://github.com/CuteLeaf/Firefly/issues) 或 [Pull Request](https://github.com/CuteLeaf/Firefly/pulls)。
-
-><a href="https://github.com/CuteLeaf/Firefly/graphs/contributors">
->  <img src="https://contrib.rocks/image?repo=CuteLeaf/Firefly" />
-></a>
-
-感谢以下贡献者对原项目 [fuwari](https://github.com/saicaca/fuwari) 做出的贡献，为本项目奠定了基础。
-
-><a href="https://github.com/saicaca/fuwari/graphs/contributors">
->  <img src="https://contrib.rocks/image?repo=saicaca/fuwari" />
-></a>
-
-## ⭐ Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=CuteLeaf/Firefly&type=Date)](https://star-history.com/#CuteLeaf/Firefly&Date)
-
-
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-disable -->
-
-<!-- markdownlint-restore -->
-<!-- prettier-ignore-end -->
-
-<!-- ALL-CONTRIBUTORS-LIST:END -->
+<div align="center">
+  <sub>© 2026 <b>Airportizi 机场指南</b> (airportizi.com). All rights reserved.</sub>
+</div>
