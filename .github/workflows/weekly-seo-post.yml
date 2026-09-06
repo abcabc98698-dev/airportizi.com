@@ -1,0 +1,101 @@
+name: Weekly Auto SEO/GEO Post Generation
+
+on:
+  schedule:
+    # 每周一上午 10:00 (UTC 02:00) 定时全自动执行
+    - cron: '0 2 * * 1'
+  workflow_dispatch:
+    inputs:
+      topic:
+        description: '自选文章选题或核心关键词（留空则自动从智能选题池挑选未发布的最新主题）'
+        required: false
+        default: ''
+        type: string
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "weekly-seo-post"
+  cancel-in-progress: false
+
+jobs:
+  generate-and-publish:
+    name: Generate Post & Check SEO
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 11.22.0
+          run_install: false
+
+      - name: Install dependencies
+        run: pnpm install --no-frozen-lockfile
+
+      - name: Generate SEO/GEO Article via Gemini
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          CUSTOM_TOPIC: ${{ inputs.topic }}
+        run: |
+          if [ -n "$CUSTOM_TOPIC" ]; then
+            echo "🚀 接收到自选选题: $CUSTOM_TOPIC"
+            node scripts/generate-weekly-post.mjs "$CUSTOM_TOPIC"
+          else
+            echo "🚀 从智能选题池挑选前沿主题..."
+            node scripts/generate-weekly-post.mjs
+          fi
+
+      - name: Build site & generate search indexes
+        run: pnpm run build
+
+      - name: SEO Health Check Gate
+        run: pnpm run seo:check
+
+      - name: Submit to IndexNow (Bing & Search Engines)
+        run: pnpm run seo:indexnow
+
+      - name: Commit and push new article to GitHub
+        run: |
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git add src/content/posts/ SEO-Keyword-URL-Mapping.csv .indexnow-cache.json
+          if git diff --staged --quiet; then
+            echo "⚠️ 无新内容需要提交。"
+          else
+            git commit -m "content(auto): 每周自动发布万字级 SEO/GEO 深度测评长文 [skip ci]"
+            git push origin main
+          fi
+
+      - name: Create .nojekyll file
+        run: touch dist/.nojekyll
+
+      - name: Upload artifact for GitHub Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy-pages:
+    name: Deploy to GitHub Pages
+    runs-on: ubuntu-latest
+    needs: generate-and-publish
+    continue-on-error: true
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
