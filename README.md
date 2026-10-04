@@ -70,7 +70,7 @@
 airportizi.com/
 ├── .github/                  # GitHub Actions 工作流 (自动化构建与部署)
 ├── public/                   # 静态公开资源 (Favicon、IndexNow 密钥文件等)
-│   └── f6280db51f0842dbbe3e32e854d9241b.txt  # IndexNow 验证 Key
+│   └── d29068e8c1ed460e92ff8506d9735cd8.txt  # IndexNow 验证 Key
 ├── reports/                  # SEO 审计与防内耗治理分析报告
 ├── scripts/                  # 工程化自动化脚本库
 │   ├── seo-health-check.mjs  # 🛡️ SEO 发布安全门禁自动化检查脚本
