@@ -1,0 +1,37 @@
+---
+import MainGridLayout from "@/layouts/MainGridLayout.astro";
+---
+
+<MainGridLayout
+  title="服务条款与免责声明 (Terms of Service) - Airportizi 机场指南"
+  description="Airportizi 机场指南使用条款与免责声明：明确网站定位、版权所有、中立技术观测声明与用户行为合规边界。"
+>
+  <div class="flex w-full rounded-(--radius-large) overflow-hidden relative min-h-32">
+    <div class="card-base z-10 px-9 py-6 relative w-full">
+      <div class="prose dark:prose-invert max-w-none">
+        <h1 class="text-2xl md:text-3xl font-bold mb-4">服务条款与免责声明 (Terms of Service)</h1>
+        <p class="text-sm text-neutral-500 mb-6">生效日期：2026年10月4日</p>
+        
+        <p>欢迎阅读 <strong>Airportizi 机场指南</strong>（以下简称“本站”）的服务条款。通过访问或使用本站，即表示您已阅读、理解并同意受以下条款的约束。如果您不同意这些条款，请立即停止使用本站。</p>
+
+        <hr class="my-6 border-neutral-200 dark:border-neutral-800" />
+
+        <h2 class="text-xl font-semibold mt-6 mb-3">一、网站定位与中立属性</h2>
+        <p>本站定位为<strong>独立的技术观测、网络路由测试与网络性能比较指南</strong>。本站自身<strong>不提供、不销售、不架设、不出租任何代理服务器节点或网络加速服务</strong>。本站所有内容仅作为海外网络访问质量的技术实测记录与交流参考。</p>
+
+        <h2 class="text-xl font-semibold mt-6 mb-3">二、免责声明</h2>
+        <ol class="list-decimal pl-6 space-y-2">
+          <li><strong>测试数据时效性</strong>：本站所有节点测速大图、延迟、丢包率及解锁表现均基于特定测试时间点（如探针记录时间戳）及特定网络拓扑测定。由于国际骨干网波动、海底光缆故障、服务商机房维护或封锁风控升级，实际网络表现可能会随时发生变化，本站不保证测试结果在任何时间、任何地区的恒久有效性。</li>
+          <li><strong>第三方交易风险</strong>：第三方服务商的套餐售价、线路变更、退款政策及运营稳定性完全由该服务商独立负责。用户在做出任何购买决策前应充分评估风险。本站强烈建议优先选择短期月付或低单价套餐，对用户与第三方服务商之间可能产生的财务纠纷、跑路失联或服务中断，本站不承担任何法律与连带责任。</li>
+          <li><strong>合规使用边界</strong>：访问者应严格遵守所在国家与地区的法律法规。严禁利用本站技术资料从事任何危害网络安全、侵犯他人权益或违反现行法律的不当行为。</li>
+        </ol>
+
+        <h2 class="text-xl font-semibold mt-6 mb-3">三、知识产权保护</h2>
+        <p>本站原创的技术评测文章、架构拓扑图解、独家对比矩阵及排版设计均受知识产权法律保护。未经本站明确书面许可，严禁使用爬虫技术批量抓取、洗稿、全文抄袭或用于任何商业镜像传播。</p>
+
+        <h2 class="text-xl font-semibold mt-6 mb-3">四、条款变更</h2>
+        <p>本站保留在必要时修改本条款的权利。修改后的条款一旦在网站上公布即行生效。</p>
+      </div>
+    </div>
+  </div>
+</MainGridLayout>

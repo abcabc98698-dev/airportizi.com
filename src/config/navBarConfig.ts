@@ -40,6 +40,11 @@ const getDynamicNavBarConfig = (): NavBarConfig => {
 				icon: "material-symbols:article-rounded",
 			},
 			{
+				name: "系列专题",
+				url: "/series/",
+				icon: "material-symbols:layers-rounded",
+			},
+			{
 				name: "风险动态",
 				url: "/dynamic/",
 				icon: "material-symbols:warning-rounded",

@@ -1,8 +1,70 @@
 import { visit } from "unist-util-visit";
 
+const INFORMATIONAL_DOMAINS = [
+	"github.com",
+	"github.io",
+	"wikipedia.org",
+	"w3.org",
+	"mozilla.org",
+	"microsoft.com",
+	"apple.com",
+	"google.com",
+	"cloudflare.com",
+	"astro.build",
+	"jsdelivr.net",
+	"npmjs.com",
+	"openai.com",
+	"anthropic.com",
+	"speedtest.net",
+	"fast.com",
+	"ipinfo.io",
+	"bgp.he.net",
+];
+
+function isAffiliateOrSponsored(urlStr) {
+	try {
+		const u = new URL(urlStr);
+		const host = u.hostname.toLowerCase();
+		if (
+			u.searchParams.has("code") ||
+			u.searchParams.has("aff") ||
+			u.searchParams.has("aff_id") ||
+			u.searchParams.has("r") ||
+			u.searchParams.has("invite") ||
+			u.hash.includes("code=") ||
+			u.hash.includes("aff=") ||
+			u.pathname.includes("/register") ||
+			u.pathname.includes("/aff.php")
+		) {
+			return true;
+		}
+
+		if (
+			host.includes("aff.") ||
+			host.includes("aff-") ||
+			host.includes("-aff") ||
+			host.includes("aff")
+		) {
+			return true;
+		}
+
+		const isInfo = INFORMATIONAL_DOMAINS.some(
+			(d) => host === d || host.endsWith(`.${d}`),
+		);
+		if (isInfo) {
+			return false;
+		}
+
+		return true;
+	} catch {
+		return false;
+	}
+}
+
 /**
- * 为文章中的外部链接添加 target="_blank" 和 rel="noopener noreferrer"
- * 仅处理以 http:// 或 https:// 开头且不属于本站的链接
+ * 为文章中的外部链接添加 target="_blank"
+ * 商业合作/返利外链添加 rel="nofollow sponsored noopener noreferrer"
+ * 信息类/开源外链添加 rel="noopener noreferrer"
  *
  * @param {Object} options
  * @param {string} [options.siteUrl] - 站点URL，用于判断是否为内部链接
@@ -37,7 +99,11 @@ export default function rehypeExternalLinks(options = {}) {
 			}
 
 			node.properties.target = "_blank";
-			node.properties.rel = "noopener noreferrer";
+			if (isAffiliateOrSponsored(href)) {
+				node.properties.rel = "nofollow sponsored noopener noreferrer";
+			} else {
+				node.properties.rel = "noopener noreferrer";
+			}
 		});
 	};
 }

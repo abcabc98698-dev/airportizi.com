@@ -1,0 +1,74 @@
+---
+import MainGridLayout from "@/layouts/MainGridLayout.astro";
+---
+
+<MainGridLayout
+  title="评测方法论与数据标准 (Testing Methodology) - Airportizi 机场指南"
+  description="Airportizi 机场指南技术评测方法论：全公开自动化多点探针架构、三网晚高峰丢包压测模型、AI与流媒体解锁判定准则及防跑路量化指标。"
+>
+  <div class="flex w-full rounded-(--radius-large) overflow-hidden relative min-h-32">
+    <div class="card-base z-10 px-9 py-6 relative w-full">
+      <div class="prose dark:prose-invert max-w-none">
+        <h1 class="text-2xl md:text-3xl font-bold mb-4">评测方法论与数据采集标准 (Methodology)</h1>
+        <p class="text-sm text-neutral-500 mb-6">版本标准：Airportizi Evaluation Framework 2026.4 · 持续更新</p>
+        
+        <p>为了保障所有评测结论的中立性、权威性与可复现性，<strong>Airportizi 机场指南</strong>拒绝任何形式的“云评测”与空泛的主观臆断。我们搭建了覆盖全国三网核心骨干网的自动化探针矩阵，本页面公开我们的数据采集架构与打分量化模型。</p>
+
+        <hr class="my-6 border-neutral-200 dark:border-neutral-800" />
+
+        <h2 class="text-xl font-semibold mt-6 mb-3">一、测速实验室物理测试环境</h2>
+        <div class="overflow-x-auto my-4">
+          <table class="min-w-full text-sm border-collapse border border-neutral-200 dark:border-neutral-800">
+            <thead>
+              <tr class="bg-neutral-100 dark:bg-neutral-800/50">
+                <th class="border border-neutral-200 dark:border-neutral-800 p-2 text-left">监测点位置</th>
+                <th class="border border-neutral-200 dark:border-neutral-800 p-2 text-left">接入运营商</th>
+                <th class="border border-neutral-200 dark:border-neutral-800 p-2 text-left">接入带宽规格</th>
+                <th class="border border-neutral-200 dark:border-neutral-800 p-2 text-left">代表性网络特征</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="border border-neutral-200 dark:border-neutral-800 p-2">华南节点（广州）</td>
+                <td class="border border-neutral-200 dark:border-neutral-800 p-2">中国电信 (China Telecom)</td>
+                <td class="border border-neutral-200 dark:border-neutral-800 p-2">千兆光纤 (1000M/100M)</td>
+                <td class="border border-neutral-200 dark:border-neutral-800 p-2">考验国际出口晚高峰 163 骨干网拥堵与 CN2/专线切换能力</td>
+              </tr>
+              <tr>
+                <td class="border border-neutral-200 dark:border-neutral-800 p-2">华东节点（上海）</td>
+                <td class="border border-neutral-200 dark:border-neutral-800 p-2">中国联通 (China Unicom)</td>
+                <td class="border border-neutral-200 dark:border-neutral-800 p-2">千兆光纤 (1000M/100M)</td>
+                <td class="border border-neutral-200 dark:border-neutral-800 p-2">考验 AS4837 / 9929 国际互联互通延迟与抖动</td>
+              </tr>
+              <tr>
+                <td class="border border-neutral-200 dark:border-neutral-800 p-2">华东节点（杭州）</td>
+                <td class="border border-neutral-200 dark:border-neutral-800 p-2">中国移动 (China Mobile)</td>
+                <td class="border border-neutral-200 dark:border-neutral-800 p-2">千兆光纤 (1000M/100M)</td>
+                <td class="border border-neutral-200 dark:border-neutral-800 p-2">考验 CMI 线路质量及晚高峰跨网互联 QoS 表现</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 class="text-xl font-semibold mt-6 mb-3">二、四大核心技术量化指标</h2>
+        <ol class="list-decimal pl-6 space-y-3">
+          <li><strong>晚高峰丢包率与断流指数（权重 35%）</strong>：
+            <p class="text-sm mt-1">在每日 20:30 ~ 23:00（全网骨干网流量峰值区间），探针向各服务商核心香港、日本、新加坡及美国节点发起连续持续 500 次 ICMP / TCP Ping 探测，记录真实丢包率。丢包率 &lt; 1% 评定为 S 级企业专线，丢包率 &gt; 5% 判定为拥堵降级。</p>
+          </li>
+          <li><strong>带宽吞吐与流媒体测速（权重 25%）</strong>：
+            <p class="text-sm mt-1">通过专业测速脚本测试单线程与多线程峰值下行速率，并模拟 YouTube 4K/8K 视频播放缓冲时间与连接速度（Connection Speed）。优质专线需稳定维持在 80,000 Kbps 以上。</p>
+          </li>
+          <li><strong>AI 与海外流媒体解锁真伪（权重 20%）</strong>：
+            <p class="text-sm mt-1">每 6 小时自动化请求 OpenAI、Anthropic (Claude 3.7)、Google Gemini API 鉴权接口及 Netflix、Disney+ 区域非自制剧播放列表。验证出口节点是否为干净的低风控原生住宅 IP / 商宽 IP，排除欺诈性 DNS 重定向虚假解锁。</p>
+          </li>
+          <li><strong>商家运营信誉与跑路风险雷达（权重 20%）</strong>：
+            <p class="text-sm mt-1">结合域名 WHOIS 存续时长、历史工单响应速率、退款条款、技术支持团队活跃度及是否有无理由退款机制。严厉打击开业打折圈钱、频繁更换收款主体或恶意拉长年付周期的潜在跑路平台。</p>
+          </li>
+        </ol>
+
+        <h2 class="text-xl font-semibold mt-6 mb-3">三、严格区分“年付折算价”与“真实月付价”</h2>
+        <p>在所有评测卡片与对比矩阵中，我们均强制同时标明<strong>真实单月付款门槛</strong>与<strong>年付折算价格</strong>。坚决抵制某些平台将 3 年付折算单价冒充“月付便宜”诱导消费者的虚假宣传行为，保护用户资金安全。</p>
+      </div>
+    </div>
+  </div>
+</MainGridLayout>

@@ -1,0 +1,40 @@
+---
+import MainGridLayout from "@/layouts/MainGridLayout.astro";
+---
+
+<MainGridLayout
+  title="隐私政策 (Privacy Policy) - Airportizi 机场指南"
+  description="Airportizi 机场指南隐私政策：说明我们如何收集、使用、保护用户的访问数据，严格恪守无日志与隐私保护准则。"
+>
+  <div class="flex w-full rounded-(--radius-large) overflow-hidden relative min-h-32">
+    <div class="card-base z-10 px-9 py-6 relative w-full">
+      <div class="prose dark:prose-invert max-w-none">
+        <h1 class="text-2xl md:text-3xl font-bold mb-4">隐私政策 (Privacy Policy)</h1>
+        <p class="text-sm text-neutral-500 mb-6">最后修订与生效日期：2026年10月4日</p>
+        
+        <p>欢迎访问 <strong>Airportizi 机场指南</strong>（以下简称“本站”，网址：<a href="https://airportizi.com">https://airportizi.com</a>）。我们极其重视访问者的个人隐私与数据安全。本隐私政策详细阐明我们在您浏览本站时收集、处理和保护信息的方式。</p>
+
+        <hr class="my-6 border-neutral-200 dark:border-neutral-800" />
+
+        <h2 class="text-xl font-semibold mt-6 mb-3">一、我们收集的信息类型</h2>
+        <ol class="list-decimal pl-6 space-y-2">
+          <li><strong>非个人可识别访问数据</strong>：当您访问本站时，我们的静态托管服务商（如 Cloudflare / Vercel）可能会自动记录基础的网络请求日志，包括：访问时间、IP 地址属地（匿名化脱敏处理）、浏览器类型、操作系统版本及引荐来源页面。这些日志仅用于防范恶意 DDoS 攻击与保障网络服务可用性。</li>
+          <li><strong>本地偏好设置缓存</strong>：本站通过浏览器的 LocalStorage 技术保存您的主题偏好（明暗模式切换、主题色相）与阅读设置，该数据完全存储于您的本地设备，不会上传至任何远程服务器。</li>
+          <li><strong>主动联络信息</strong>：若您通过公开邮箱主动向我们发送反馈或风险举报，我们将仅保留您的来信内容用于回复与核实问题，绝不会将您的联系方式出售、转让或共享给任何商业第三方。</li>
+        </ol>
+
+        <h2 class="text-xl font-semibold mt-6 mb-3">二、第三方外链与服务商</h2>
+        <p>本站包含指向第三方机场服务商、开源软件发布仓库（如 GitHub）或测速工具的外部链接。当您点击外部链接离开本站时，您的后续操作将受该第三方网站自身的隐私政策约束。我们强烈建议您在向任何第三方服务商提供个人注册信息或付款前，仔细阅读其对应的隐私条款。</p>
+
+        <h2 class="text-xl font-semibold mt-6 mb-3">三、Cookie 与跟踪技术说明</h2>
+        <p>作为现代静态站点，本站自身<strong>不使用任何侵入性追踪 Cookie</strong>，不投放第三方跨站追踪广告 SDK，亦不进行用户画像追踪分析。</p>
+
+        <h2 class="text-xl font-semibold mt-6 mb-3">四、未成年人隐私保护</h2>
+        <p>本站内容主要面向网络技术爱好者、出海开发者及具备完全民事行为能力的成年网民。我们不会有意收集任何未成年人的个人信息。</p>
+
+        <h2 class="text-xl font-semibold mt-6 mb-3">五、隐私政策的更新与联系</h2>
+        <p>我们可能会根据相关法律法规或技术演进适时更新本隐私政策。最新版本将始终公布于本页面。如您对本政策有任何疑问，请通过官方邮箱与我们取得联系。</p>
+      </div>
+    </div>
+  </div>
+</MainGridLayout>

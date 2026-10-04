@@ -235,6 +235,11 @@ export default defineConfig({
 		}),
 		svelte(),
 		sitemap({
+			lastmod: new Date(),
+			serialize: (item) => {
+				item.lastmod = new Date();
+				return item;
+			},
 			filter: (page) => {
 				// 根据页面开关配置过滤sitemap
 				const url = new URL(page);

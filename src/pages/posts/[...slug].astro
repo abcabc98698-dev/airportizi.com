@@ -24,6 +24,7 @@ import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import CoverImage from "@/components/common/CoverImage.astro";
 import PostMetadata from "@/components/layout/PostMeta.astro";
+import AffiliateDisclosure from "@/components/misc/AffiliateDisclosure.astro";
 import RecommendedPost from "@/components/misc/RecommendedPost.astro";
 import SeriesNav from "@/components/misc/SeriesNav.astro";
 import SharePoster from "@/components/misc/SharePoster.svelte";
@@ -518,6 +519,7 @@ const seriesData = await getSeriesPosts(entry);
         </EncryptedPost>
       ) : (
         <>
+          <AffiliateDisclosure />
           <Markdown class="mb-6 markdown-content onload-animation">
             <Content />
           </Markdown>
