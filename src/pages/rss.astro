@@ -10,7 +10,7 @@ const posts = await getSortedPosts();
 const recentPosts = posts.slice(0, 6);
 ---
 
-<MainGridLayout title={i18n(I18nKey.rss)} description={i18n(I18nKey.rssDescription)}>
+<MainGridLayout title={i18n(I18nKey.rss)} description="Airportizi 机场指南官方 RSS 订阅中心：提供全站最新稳定机场深度评测、年度排行榜更新、主流客户端配置教程及机场跑路风险动态预警的实时 XML 订阅源。支持一键复制订阅链接导入 Follow、Reeder、Inoreader、Feedly 等主流 RSS 阅读器，无需频繁刷新网页即可第一时间获取测评更新。">
     <div class="onload-animation">
         <!-- RSS 标题和介绍 -->
         <div class="card-base rounded-(--radius-large) p-8 mb-6">

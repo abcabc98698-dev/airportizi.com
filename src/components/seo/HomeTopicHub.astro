@@ -1,0 +1,187 @@
+---
+import { Icon } from "astro-icon/components";
+import { url } from "@/utils/url-utils";
+
+interface HubItem {
+	title: string;
+	desc: string;
+	icon: string;
+	primaryHref: string;
+	primaryLabel: string;
+	secondaryLinks: { label: string; href: string }[];
+}
+
+const hubs: HubItem[] = [
+	{
+		title: "2026 机场推荐与实力排行",
+		desc: "三网探针实测晚高峰延迟与零丢包率，严选 5 年老牌与纯月付主力方案。",
+		icon: "material-symbols:recommend-rounded",
+		primaryHref: url("/posts/recommend-2026-best-airports/"),
+		primaryLabel: "2026 精选机场推荐",
+		secondaryLinks: [
+			{
+				label: "综合排行榜",
+				href: url("/posts/ranking-overall-performance-stability/"),
+			},
+			{ label: "稳定机场指南", href: url("/jichang/") },
+			{
+				label: "横向参数对比",
+				href: url("/posts/airports-comparison-price-traffic-stability-guide/"),
+			},
+		],
+	},
+	{
+		title: "Claude / ChatGPT / Gemini AI 专线",
+		desc: "纯净美英日双 ISP 原生住宅 IP，解决 Anthropic 地区封锁与 OpenAI 1020 风控。",
+		icon: "material-symbols:smart-toy-rounded",
+		primaryHref: url("/posts/claude-airports-ip-node-selection-guide/"),
+		primaryLabel: "Claude 机场节点推荐",
+		secondaryLinks: [
+			{
+				label: "ChatGPT 原生 IP",
+				href: url("/posts/chatgpt-native-ip-airports-guide/"),
+			},
+			{
+				label: "Gemini 专线",
+				href: url("/posts/gemini-airports-google-ai-selection-guide/"),
+			},
+			{
+				label: "AI 机场总览",
+				href: url("/posts/ai-chatgpt-claude-cursor-airports/"),
+			},
+		],
+	},
+	{
+		title: "全球节点与 IEPL 物理专线",
+		desc: "香港/日本低延迟直连与美西原生节点，告别公网出口拥堵与假专线套娃。",
+		icon: "material-symbols:hub-rounded",
+		primaryHref: url(
+			"/posts/us-nodes-chatgpt-claude-streaming-airports-guide/",
+		),
+		primaryLabel: "美国节点与解锁指南",
+		secondaryLinks: [
+			{
+				label: "IEPL 专线机场",
+				href: url("/posts/iepl-airports-dedicated-lines-guide-2026/"),
+			},
+			{
+				label: "国内机场节点与入口",
+				href: url("/posts/domestic-relay-entry-nodes-routing-guide/"),
+			},
+			{
+				label: "三网优化线路",
+				href: url("/posts/three-major-carriers-optimized-airports-guide/"),
+			},
+			{ label: "全球节点测速", href: url("/nodes/") },
+		],
+	},
+	{
+		title: "GitHub 加速与开发者工具链",
+		desc: "针对 git clone 443 超时、Docker 拉取与 Cursor / Claude Code 终端透明代理。",
+		icon: "material-symbols:terminal-rounded",
+		primaryHref: url(
+			"/posts/programmer-airports-github-ai-developer-tools-guide/",
+		),
+		primaryLabel: "GitHub 与程序员机场",
+		secondaryLinks: [
+			{
+				label: "AI 开发者 API 专线",
+				href: url(
+					"/posts/ai-developer-airports-chatgpt-claude-gemini-selection-guide/",
+				),
+			},
+			{
+				label: "Cursor 代理调优",
+				href: url("/posts/cursor-claude-code-ai-developer-proxy-tuning-guide/"),
+			},
+		],
+	},
+	{
+		title: "十元月付、按量计费与优惠码",
+		desc: "低预算高性价比月付、永久不过期备用流量包及主流品牌独家折扣券。",
+		icon: "material-symbols:savings-rounded",
+		primaryHref: url("/posts/ten-yuan-budget-airports-selection-guide/"),
+		primaryLabel: "十元机场精选横评",
+		secondaryLinks: [
+			{
+				label: "不限时按量机场",
+				href: url("/posts/no-expiration-pay-as-you-go-airports-guide/"),
+			},
+			{ label: "唯兔云 14.9元评测", href: url("/posts/brand-weitu-review/") },
+			{ label: "优惠码专区", href: url("/free/") },
+		],
+	},
+	{
+		title: "机场客户端下载与防失联风控",
+		desc: "Clash Verge Rev、小火箭 Shadowrocket 与 sing-box 订阅教程及跑路名单预警。",
+		icon: "material-symbols:devices-rounded",
+		primaryHref: url("/posts/client-setup-clash-verge-shadowrocket/"),
+		primaryLabel: "全平台客户端下载",
+		secondaryLinks: [
+			{ label: "光速云 TOP1 评测", href: url("/posts/guangshuyun-review/") },
+			{ label: "16+ 品牌实测库", href: url("/brands/") },
+			{
+				label: "跑路风险预警",
+				href: url("/posts/risk-warning-runaway-record/"),
+			},
+		],
+	},
+];
+---
+
+<section
+  class="card-base px-5 md:px-7 py-6 mb-4 onload-animation"
+  aria-labelledby="home-pillar-hub-title"
+>
+  <div class="flex flex-wrap items-center gap-2 mb-2.5">
+    <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-(--primary)/10 text-(--primary) inline-flex items-center gap-1">
+      <Icon name="material-symbols:verified-rounded" class="text-sm" />
+      2026 三网实测 · 权威专题导航
+    </span>
+    <span class="text-xs text-50">
+      涵盖广州电信 / 上海联通 / 杭州移动晚高峰探针监测
+    </span>
+  </div>
+
+  <h1
+    id="home-pillar-hub-title"
+    class="text-xl md:text-2xl font-bold text-90 mb-2 leading-snug"
+  >
+    2026 精选稳定机场推荐 · 节点测评与 AI 专线指南
+  </h1>
+
+  <p class="text-sm text-70 leading-relaxed mb-4">
+    <strong>Airportizi 机场指南</strong>聚焦真实测速与长期稳定性：坚持区分<strong>年付折算（7元档光速云/微风）</strong>与<strong>真实纯月付（14.9元档唯兔云/宇宙云）</strong>，为您提供 IEPL 内网专线、美国原生双 ISP 节点、Claude/ChatGPT/GitHub 加速及客户端下载的一站式参考。
+  </p>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3">
+    {hubs.map((hub) => (
+      <div class="p-3.5 rounded-xl border border-black/5 dark:border-white/10 bg-black/[0.02] dark:bg-white/[0.02] hover:border-(--primary)/40 transition-colors flex flex-col justify-between gap-2.5">
+        <div>
+          <div class="flex items-center gap-2 mb-1">
+            <Icon name={hub.icon} class="text-lg text-(--primary) shrink-0" />
+            <a
+              href={hub.primaryHref}
+              class="font-bold text-sm text-90 hover:text-(--primary) transition-colors line-clamp-1"
+            >
+              {hub.primaryLabel}
+            </a>
+          </div>
+          <p class="text-xs text-50 leading-relaxed line-clamp-2">
+            {hub.desc}
+          </p>
+        </div>
+        <div class="flex flex-wrap gap-1.5 pt-1 border-t border-dashed border-(--line-divider)">
+          {hub.secondaryLinks.map((sub) => (
+            <a
+              href={sub.href}
+              class="text-xs px-2 py-0.5 rounded-md bg-(--btn-regular-bg) text-(--btn-content) hover:bg-(--primary) hover:text-white dark:hover:text-black/80 transition-colors"
+            >
+              {sub.label}
+            </a>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+</section>

@@ -1,130 +1,236 @@
 ---
-import CategoryLanding from "@/components/seo/CategoryLanding.astro";
-import { getSortedPosts } from "@/utils/content-utils";
+import { Icon } from "astro-icon/components";
+import BrandLibrary from "@/components/seo/BrandLibrary.svelte";
+import { siteConfig } from "@/config";
+import { BRAND_STATS, BRANDS_DATABASE } from "@/data/brands";
+import MainGridLayout from "@/layouts/MainGridLayout.astro";
+import { url } from "@/utils/url-utils";
 
-const allPosts = await getSortedPosts();
-// 筛选品牌评测文章
-const brandPosts = allPosts.filter((p) => {
-	const cat = p.data.category || "";
-	return cat.includes("品牌库") || p.id.includes("review");
-});
+const title = "2026 42家科学上网机场品牌库大全与全景实测数据库 - Airportizi";
+const description =
+	"全网最全 42 家科学上网机场品牌实测档案库，收录光速云（6张实测与三网解锁大图）、微风网络、飞猫云、星岛梦、唯兔云、无忧链接、宇宙云等 18 家有图实测品牌与 24 家同源及历史归档服务商。按月付门槛、协议类型、不限时按量与数据实证口径一键筛选对比，彻底避坑防跑路。";
+const h1Title = "2026 42 家科学上网机场品牌库与实证筛选数据库";
+const canonicalPath = "/brands/";
 
-const subLinks = [
+const siteUrl = siteConfig.site_url.replace(/\/$/, "");
+const fullCanonicalUrl = `${siteUrl}${canonicalPath}`;
+
+const pillarLinks = [
 	{
-		name: "光速云 (TOP 1 主推)",
+		name: "2026 机场推荐总榜",
+		url: "/posts/recommend-2026-best-airports/",
+		icon: "material-symbols:recommend-rounded",
+		badge: "总榜",
+	},
+	{
+		name: "光速云 (TOP 1 · 6张实测图)",
 		url: "/posts/guangshuyun-review/",
 		icon: "material-symbols:bolt-rounded",
-		badge: "TOP 1 8折码",
+		badge: "8折码 AMM",
 	},
 	{
-		name: "微风网络 (TOP 2)",
-		url: "/posts/brand-weifeng-review/",
-		icon: "material-symbols:air-rounded",
-		badge: "TOP 2",
+		name: "纯月付防套牢专区",
+		url: "/posts/monthly-payment-airports-no-annual-plan-guide/",
+		icon: "material-symbols:calendar-month-rounded",
 	},
 	{
-		name: "飞猫云 (TOP 3)",
-		url: "/posts/brand-feimaoyun-review/",
-		icon: "material-symbols:pets-rounded",
-		badge: "TOP 3",
+		name: "10元低预算高性价比",
+		url: "/free/",
+		icon: "material-symbols:savings-rounded",
 	},
 	{
-		name: "星岛梦 (TOP 4)",
-		url: "/posts/brand-xingdaomeng-review/",
-		icon: "material-symbols:auto-awesome-rounded",
-		badge: "TOP 4",
-	},
-	{
-		name: "唯兔云 (TOP 5)",
-		url: "/posts/brand-weitu-review/",
-		icon: "material-symbols:hub-rounded",
-		badge: "TOP 5 月付",
-	},
-	{
-		name: "宇宙云 (14.9元月付)",
-		url: "/posts/yuzhouyun-review-8-yuan/",
-		icon: "material-symbols:cloud-done-rounded",
-	},
-	{
-		name: "灵猫网络 (19元150G)",
-		url: "/posts/brand-lingmao-review/",
-		icon: "material-symbols:cruelty-free-rounded",
-	},
-	{
-		name: "极连云 (18元IEPL)",
-		url: "/posts/brand-jilianyun-review/",
+		name: "IEPL 物理专线专题",
+		url: "/vpn/",
 		icon: "material-symbols:speed-rounded",
 	},
 	{
-		name: "光年梯 (18元110G)",
-		url: "/posts/brand-guangnianti-review/",
-		icon: "material-symbols:flight-takeoff-rounded",
-	},
-	{
-		name: "二猫云 (20元130G)",
-		url: "/posts/brand-ermaoyun-review/",
-		icon: "material-symbols:cruelty-free-rounded",
-	},
-	{
-		name: "一翻云 (20元150G)",
-		url: "/posts/brand-yifanyun-review/",
-		icon: "material-symbols:cloud-upload-rounded",
-	},
-	{
-		name: "U1S1 (20元120G)",
-		url: "/posts/brand-u1s1-review/",
-		icon: "material-symbols:verified-rounded",
-	},
-	{
-		name: "全球云 (20元新秀)",
-		url: "/posts/brand-quanqiuyun-review/",
-		icon: "material-symbols:public-rounded",
-	},
-	{
-		name: "速界 (25元AI专线)",
-		url: "/posts/brand-sujie-review/",
-		icon: "material-symbols:smart-toy-rounded",
-	},
-	{
-		name: "SOGO云 (25元150G)",
-		url: "/posts/brand-sogoyun-review/",
-		icon: "material-symbols:cloud-circle-rounded",
-	},
-	{
-		name: "可信云 (25元多设备)",
-		url: "/posts/brand-kexinyun-review/",
+		name: "客户端配置教程",
+		url: "/posts/client-setup-clash-verge-shadowrocket/",
 		icon: "material-symbols:devices-rounded",
 	},
 	{
-		name: "快狸 (25元综合型)",
-		url: "/posts/brand-kuaili-review/",
-		icon: "material-symbols:flash-on-rounded",
+		name: "机场跑路与风险预警",
+		url: "/posts/risk-warning-runaway-record/",
+		icon: "material-symbols:warning-rounded",
 	},
 ];
 
 const faqs = [
 	{
-		question: "Airportizi 机场品牌库的评测数据来自哪里？",
-		answer:
-			"本站所有评测均基于真实的千兆网络环境测速大图，并结合官方公布的套餐与协议参数进行交叉验证。严格区分年付折算价格与真实月付价格，不虚标、不承诺永久全解，真实呈现晚高峰丢包与延迟。",
+		question: "Airportizi 42 家机场品牌库中的数据是如何划分可信度的？",
+		answer: `本站严格执行三层实证分级：第一层「有实测截图（${BRAND_STATS.measuredCount}家，共${BRAND_STATS.totalScreenshots}张原图）」附带测速软件版本号、节点并发或单线程参数与具体测试时间戳（含光速云三网 AI 解锁与无忧链接流媒体实测图）；第二层「商家标称·待实测」如实展示官网公开套餐并标记待补充晚高峰大图；第三层「历史归档」标注过往采样时间，提醒用户下单前核实官网现价与入口有效性，绝不替未测品牌编造 300Mbps+ 假表。`,
 	},
 	{
-		question: "如果预算在 20 元以内，品牌库中哪几家最推荐？",
+		question: "为什么有些机场写着 5.6~8 元/月，点进去纯月付却是 19~25 元？",
 		answer:
-			"若希望长期使用且月均成本极低，首推老牌光速云（年付折合约 7.5 元/月，8折码 AMM）；若坚持纯月付拒绝年付捆绑，推荐宇宙云（14.9 元/月 100GB）或唯兔云（14.9 元/月 100GB）；若需要大流量推荐一翻云（20 元 150GB）或灵猫网络（19 元 150GB）。",
+			"这是业内常见的宣传口径差异：5.6 元至 8.25 元通常是「年付优惠套餐 ÷ 12 个月」折算后的均摊成本（例如光速云轻量版 99 元/年 69GB/月、飞猫云 84 元/年、无忧链接 79 元/年）。如果您希望零沉没成本、拒绝预付年费，应在上方筛选器勾选「支持纯月付」，重点参考宇宙云（14.9 元/月）、唯兔云（14.9 元/月）或光速云极速版（25 元 168GB）。",
+	},
+	{
+		question: "为什么合并了 Firefly 与萤火虫档案？5.6 元同源档又该注意什么？",
+		answer:
+			"经核验注册域名（vip02.fireflyaff.com）与优惠码（firefly）及套餐命名，Firefly 与萤火虫实为同一家服务的双语条目，因此合并为单一规范档案并保留 301 重定向，避免重复内容稀释权重。对于大佬云、闪电鼠、云界线、榴莲云、环球梯等高度相似的 5.6 元年付档，本站保留独立评测以便核对优惠码，但同时标注了同源矩阵风控提醒，建议优先做小额试错。",
+	},
+	{
+		question: "哪些机场不支持 Clash / Shadowrocket 等第三方通用客户端？",
+		answer:
+			"品牌库中已用红色徽章显式标记客户端兼容性：例如「隐形人」明确不提供第三方订阅链接，只能使用官方自带客户端；「Firefly（萤火虫）」自 2026-10 起亦逐步转向官方专属客户端为主。如果你依赖软路由（OpenClash/Nikki）或 Clash Verge Rev、Shadowrocket 分流规则，请在筛选栏勾选「支持 Clash / 小火箭订阅」。",
 	},
 ];
+
+const jsonLd = {
+	"@context": "https://schema.org",
+	"@graph": [
+		{
+			"@type": "CollectionPage",
+			"@id": `${fullCanonicalUrl}#webpage`,
+			url: fullCanonicalUrl,
+			name: title,
+			description,
+			isPartOf: {
+				"@type": "WebSite",
+				"@id": `${siteUrl}/#website`,
+				name: siteConfig.title,
+				url: siteUrl,
+			},
+		},
+		{
+			"@type": "BreadcrumbList",
+			"@id": `${fullCanonicalUrl}#breadcrumb`,
+			itemListElement: [
+				{
+					"@type": "ListItem",
+					position: 1,
+					name: "首页",
+					item: `${siteUrl}/`,
+				},
+				{
+					"@type": "ListItem",
+					position: 2,
+					name: h1Title,
+					item: fullCanonicalUrl,
+				},
+			],
+		},
+		{
+			"@type": "ItemList",
+			itemListOrder: "https://schema.org/ItemListOrderAscending",
+			numberOfItems: BRANDS_DATABASE.length,
+			itemListElement: BRANDS_DATABASE.map((brand) => ({
+				"@type": "ListItem",
+				position: brand.rank,
+				url: `${siteUrl}${brand.url}`,
+				name: `${brand.name}深度评测档案`,
+			})),
+		},
+		{
+			"@type": "FAQPage",
+			mainEntity: faqs.map((faq) => ({
+				"@type": "Question",
+				name: faq.question,
+				acceptedAnswer: {
+					"@type": "Answer",
+					text: faq.answer,
+				},
+			})),
+		},
+	],
+};
 ---
 
-<CategoryLanding
-  title="2026机场品牌库大全与全网实测数据库 - Airportizi"
-  description="全网最全梯子机场品牌实测数据库。收录光速云、微风、飞猫云、星岛梦、宇宙云、二猫云等16+主流服务商，真实披露节点测速大图、线路协议、价格梯度与专属折扣优惠券。"
-  h1Title="2026 科学上网机场品牌库与全景实测数据库"
-  badge="品牌数据库与档案"
-  iconName="material-symbols:storefront-rounded"
-  introMarkdown="选对正规服务商是保障网络体验的关键。Airportizi 品牌库收录了 2026 年市场上活跃的 16 家主流服务商，每一家品牌均建立独立的技术测评档案，包含真实节点测速大图、晚高峰丢包率监控、AI 与流媒体可用性矩阵、开业年限历史及官方正品防失联入口。"
-  subLinks={subLinks}
-  posts={brandPosts}
-  canonicalPath="/brands/"
-  faqs={faqs}
-/>
+<MainGridLayout title={title} description={description} suppressH1={true}>
+	<slot slot="head">
+		<script
+			is:inline
+			type="application/ld+json"
+			set:html={JSON.stringify(jsonLd)}
+		/>
+	</slot>
+
+	{/* 面包屑导航 */}
+	<nav
+		class="card-base px-6 py-3 mb-4 text-xs md:text-sm flex items-center gap-2 text-50 onload-animation"
+		aria-label="面包屑导航"
+	>
+		<a
+			href={url("/")}
+			class="hover:text-(--primary) transition-colors flex items-center gap-1"
+		>
+			<Icon name="material-symbols:home-rounded" class="text-base" />
+			<span>首页</span>
+		</a>
+		<span class="text-30">/</span>
+		<span class="text-90 font-medium">42 家机场品牌实测库</span>
+	</nav>
+
+	{/* Hero 区块：唯一 H1 与核心实证指标 */}
+	<div class="card-base px-6 md:px-8 py-7 mb-4 onload-animation">
+		<div class="flex flex-wrap items-center gap-2 mb-3">
+			<span class="px-3 py-1 bg-(--primary)/10 text-(--primary) rounded-full text-xs font-semibold flex items-center gap-1.5">
+				<Icon name="material-symbols:storefront-rounded" class="text-sm" />
+				<span>42 家独立品牌实证数据库</span>
+			</span>
+			<span class="text-xs text-50">
+				有实测大图 {BRAND_STATS.measuredCount} 家（{BRAND_STATS.totalScreenshots} 张原图） · 支持纯月付 {BRAND_STATS.monthlyAvailableCount} 家
+			</span>
+		</div>
+
+		<h1 class="text-2xl md:text-3xl font-bold text-90 mb-4 leading-tight">
+			{h1Title}
+		</h1>
+
+		<div class="text-sm md:text-base text-70 leading-relaxed space-y-2.5 mb-5 bg-black/5 dark:bg-white/5 p-4 rounded-xl border border-black/5 dark:border-white/10">
+			<p>
+				为帮助读者在信息混杂的市场中做出理性决策，Airportizi 将全站收录的 <strong>42 家科学上网机场</strong>按<strong>实证等级、真实月付门槛、年付折算均价、不限时流量包与客户端协议兼容性</strong>完成结构化建档。
+			</p>
+			<p class="text-xs md:text-sm text-60">
+				注：单次测速或流媒体截图仅反映测试当时（特定测试机房、后端与并发参数下）的状态，不代表任何商家在全时段、跨地区宽带下的永久SLA；外链入口按规范添加商业披露与 <code>nofollow sponsored</code> 属性。
+			</p>
+		</div>
+
+		<div>
+			<div class="text-xs font-semibold text-40 mb-2 uppercase tracking-wider">
+				上游支柱专题与避坑入口
+			</div>
+			<div class="flex flex-wrap gap-2">
+				{pillarLinks.map((link) => (
+					<a
+						href={url(link.url)}
+						class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs md:text-sm bg-(--btn-regular-bg) hover:bg-(--primary) hover:text-white dark:hover:text-black/80 transition-all active:scale-95"
+					>
+						<Icon name={link.icon} class="text-sm" />
+						<span>{link.name}</span>
+						{link.badge && (
+							<span class="text-[10px] px-1.5 py-0.2 rounded bg-red-500/20 text-red-500 font-bold">
+								{link.badge}
+							</span>
+						)}
+					</a>
+				))}
+			</div>
+		</div>
+	</div>
+
+	{/* 交互筛选品牌数据库 */}
+	<BrandLibrary brands={BRANDS_DATABASE} client:load />
+
+	{/* FAQ 区块 */}
+	<div class="card-base p-6 md:p-8 mb-4 onload-animation">
+		<h2 class="text-lg font-bold text-90 mb-4 flex items-center gap-2">
+			<Icon name="material-symbols:help-outline-rounded" class="text-(--primary)" />
+			<span>品牌库数据口径与选购常见疑问 (FAQ)</span>
+		</h2>
+		<div class="space-y-4">
+			{faqs.map((faq) => (
+				<div class="border-b border-black/5 dark:border-white/5 pb-3 last:border-0 last:pb-0">
+					<h3 class="text-sm md:text-base font-semibold text-90 mb-1 flex items-start gap-2">
+						<span class="text-(--primary) font-bold">Q:</span>
+						<span>{faq.question}</span>
+					</h3>
+					<p class="text-xs md:text-sm text-60 pl-5 leading-relaxed">
+						{faq.answer}
+					</p>
+				</div>
+			))}
+		</div>
+	</div>
+</MainGridLayout>

@@ -7,7 +7,7 @@ function getFiles(dir) {
 	for (const file of list) {
 		const full = path.join(dir, file);
 		const stat = fs.statSync(full);
-		if (stat && stat.isDirectory()) {
+		if (stat?.isDirectory()) {
 			if (file !== "_astro" && file !== "pagefind") {
 				results = results.concat(getFiles(full));
 			}
@@ -33,6 +33,41 @@ const affiliateDomains = [
 	"yuzhouyun.com",
 	"ermaoyun.com",
 	"sujie.cloud",
+	"wgetcloud.ltd",
+	"sibker.com",
+	"cyberguard.best",
+	"ssyylf.com",
+	"kuailicloud.cc",
+	"gsyvipaff.com",
+	"breezenetaff.com",
+	"flycataff.com",
+	"weituaff.com",
+	"twilightaff.com",
+	"dalaoyunaff.com",
+	"invisibleaff.com",
+	"2maoyunaff.cc",
+	"worryfreeaff.com",
+	"yuzhouyunaff.com",
+	"lingmaoaff.com",
+	"jilianyunaff.com",
+	"guangniantiaff.cc",
+	"yifanyunaff.cc",
+	"u1s1aff.com",
+	"gcvipaff.com",
+	"sogoyunaff.cc",
+	"kosingaff.com",
+	"speedworldaff.cc",
+	"fireflyaff.com",
+	"flashleapaff.com",
+	"shandianshuaff.com",
+	"yunjiexianaff.com",
+	"liulianyunaff.com",
+	"shenxingaff.com",
+	"huanqiutiaff.com",
+	"ladderaff.com",
+	"lingdongaff.com",
+	"wavenetaff.com",
+	"edgenovaaff.cc",
 ];
 
 for (const f of files) {
@@ -43,7 +78,9 @@ for (const f of files) {
 		const fullTag = m[0];
 		const isAffiliate =
 			affiliateDomains.some((d) => fullTag.includes(d)) ||
+			/https?:\/\/[^"'\s>]*aff\.(com|cc)\b/i.test(fullTag) ||
 			fullTag.includes("aff=") ||
+			fullTag.includes("invite_code=") ||
 			fullTag.includes("register?code=");
 		if (isAffiliate) {
 			affiliateLinks++;
@@ -68,9 +105,9 @@ console.log(
 console.log(`Unmarked Affiliate Links: ${unmarkedAffiliate.length}`);
 if (unmarkedAffiliate.length > 0) {
 	console.log("Sample unmarked links:");
-	unmarkedAffiliate
-		.slice(0, 5)
-		.forEach((u) => console.log(`  [${u.file}] -> ${u.tag}`));
+	for (const u of unmarkedAffiliate.slice(0, 5)) {
+		console.log(`  [${u.file}] -> ${u.tag}`);
+	}
 } else {
 	console.log(">>> 100% PASS! ALL AFFILIATE LINKS ARE FULLY COMPLIANT! <<<");
 }

@@ -14,6 +14,7 @@
  * 8. Schema 结构化数据有效性检查
  * 9. 重复 Title / H1 / Description 检查
  * 10. 页面数量突变安全检查
+ * 11. Meta Description 长度门禁检查 (>= 100 字符)
  */
 
 import fs from "node:fs";
@@ -37,6 +38,7 @@ const results = {
 	schema: false,
 	duplicateTitles: false,
 	pageCount: false,
+	metaDescription: false,
 };
 
 const errors = [];
@@ -458,12 +460,14 @@ function checkSchema(htmlFiles) {
 	return true;
 }
 
-// 检查 9: 重复 Title 与 H1 检查
+// 检查 9: 重复 Title 与 H1 唯一性检查
 function checkDuplicateTitles(htmlFiles) {
-	console.log("[9/10] 检查重复 Title 与 H1 标签...");
+	console.log("[9/11] 检查重复 Title 与页面 H1 唯一性...");
 	const titleMap = new Map();
 	const h1Map = new Map();
 	const duplicateTitles = [];
+	const duplicateH1s = [];
+	const invalidH1Counts = [];
 
 	for (const file of htmlFiles) {
 		const urlPath = filePathToUrl(file);
@@ -472,16 +476,17 @@ function checkDuplicateTitles(htmlFiles) {
 			urlPath === "/404/" ||
 			urlPath === "/404" ||
 			urlPath.startsWith("/search") ||
+			urlPath === "/dynamic/comments/" ||
 			content.includes("Redirecting to: /404/") ||
 			content.includes('content="0;url=/404/"')
 		) {
 			continue;
 		}
 		const titleMatch = content.match(/<title[^>]*>(.*?)<\/title>/i);
-		const h1Match = content.match(/<h1[^>]*>(.*?)<\/h1>/i);
+		const h1Matches = [...content.matchAll(/<h1[^>]*>([\s\S]*?)<\/h1>/gi)];
 
 		if (titleMatch) {
-			const t = titleMatch[1].trim();
+			const t = decodeHtmlEntities(titleMatch[1].trim());
 			if (titleMap.has(t)) {
 				duplicateTitles.push({
 					title: t,
@@ -492,10 +497,26 @@ function checkDuplicateTitles(htmlFiles) {
 			}
 		}
 
-		if (h1Match) {
-			const h = h1Match[1].replace(/<[^>]+>/g, "").trim();
-			if (h && !h1Map.has(h)) {
-				h1Map.set(h, urlPath);
+		if (h1Matches.length !== 1) {
+			invalidH1Counts.push({ urlPath, count: h1Matches.length });
+		}
+
+		if (h1Matches.length > 0) {
+			const h = decodeHtmlEntities(
+				h1Matches[0][1]
+					.replace(/<[^>]+>/g, "")
+					.replace(/\s+/g, " ")
+					.trim(),
+			);
+			if (h && !/^\/\d+\/$/.test(urlPath)) {
+				if (h1Map.has(h)) {
+					duplicateH1s.push({
+						h1: h,
+						pages: [h1Map.get(h), urlPath],
+					});
+				} else {
+					h1Map.set(h, urlPath);
+				}
 			}
 		}
 	}
@@ -509,8 +530,30 @@ function checkDuplicateTitles(htmlFiles) {
 		);
 	}
 
+	if (invalidH1Counts.length > 0) {
+		errors.push(
+			`发现 ${invalidH1Counts.length} 个页面 H1 数量不是 1 个: ${invalidH1Counts
+				.slice(0, 8)
+				.map((p) => `${p.urlPath} (${p.count})`)
+				.join(", ")}`,
+		);
+	}
+
+	if (duplicateH1s.length > 0) {
+		errors.push(
+			`发现 ${duplicateH1s.length} 处跨页面 H1 重复: ${duplicateH1s
+				.slice(0, 5)
+				.map((d) => `"${d.h1}" (${d.pages.join(" vs ")})`)
+				.join("; ")}`,
+		);
+	}
+
+	if (invalidH1Counts.length > 0 || duplicateH1s.length > 0) {
+		return false;
+	}
+
 	console.log(
-		`  ✓ Title 与 H1 独立性检查完成 (共扫描 ${titleMap.size} 个独立 Title)`,
+		`  ✓ Title 与 H1 检查完成 (独立 Title ${titleMap.size} 个，单页 H1=1 且跨页无重复 ${h1Map.size} 个)`,
 	);
 	return true;
 }
@@ -561,6 +604,83 @@ function checkPageCount(sitemapUrlCount, htmlFilesCount) {
 	return true;
 }
 
+// 检查 11: Meta Description 长度检查
+function decodeHtmlEntities(str) {
+	return str
+		.replace(/&amp;/g, "&")
+		.replace(/&lt;/g, "<")
+		.replace(/&gt;/g, ">")
+		.replace(/&quot;/g, '"')
+		.replace(/&#39;/g, "'")
+		.replace(/&#x27;/g, "'");
+}
+
+function extractMetaDescription(html) {
+	const m1 = html.match(
+		/<meta[^>]+name=["']description["'][^>]+content=["']([^"']*)["'][^>]*>/i,
+	);
+	if (m1) return decodeHtmlEntities(m1[1].trim());
+	const m2 = html.match(
+		/<meta[^>]+content=["']([^"']*)["'][^>]+name=["']description["'][^>]*>/i,
+	);
+	return m2 ? decodeHtmlEntities(m2[1].trim()) : null;
+}
+
+function checkMetaDescriptions(htmlFiles) {
+	console.log("[11/11] 检查 Meta Description 长度门禁...");
+	const MIN_DESC_LENGTH = 100;
+	const shortPages = [];
+	const missingPages = [];
+	let checkedCount = 0;
+
+	for (const file of htmlFiles) {
+		const urlPath = filePathToUrl(file);
+		const content = fs.readFileSync(file, "utf8");
+		if (
+			urlPath === "/404/" ||
+			urlPath === "/404" ||
+			urlPath.startsWith("/search") ||
+			urlPath === "/dynamic/comments/" ||
+			content.includes("Redirecting to: /404/") ||
+			content.includes('content="0;url=/404/"')
+		) {
+			continue;
+		}
+
+		checkedCount++;
+		const desc = extractMetaDescription(content);
+		if (!desc) {
+			missingPages.push(urlPath);
+		} else if (desc.length < MIN_DESC_LENGTH) {
+			shortPages.push({ urlPath, length: desc.length });
+		}
+	}
+
+	if (missingPages.length > 0) {
+		errors.push(
+			`发现 ${missingPages.length} 个页面缺少 Meta Description: ${missingPages.slice(0, 5).join(", ")}`,
+		);
+	}
+
+	if (shortPages.length > 0) {
+		errors.push(
+			`发现 ${shortPages.length} 个页面 Meta Description 不足 ${MIN_DESC_LENGTH} 字符: ${shortPages
+				.slice(0, 10)
+				.map((p) => `${p.urlPath} (${p.length})`)
+				.join(", ")}`,
+		);
+	}
+
+	if (missingPages.length > 0 || shortPages.length > 0) {
+		return false;
+	}
+
+	console.log(
+		`  ✓ 已校验 ${checkedCount} 个正式页面 Meta Description，全部 >= ${MIN_DESC_LENGTH} 字符`,
+	);
+	return true;
+}
+
 async function run() {
 	console.log("==================================================");
 	console.log("🚀 开始执行 SEO 上线前基础设施与发布安全健康检查");
@@ -584,6 +704,7 @@ async function run() {
 		sitemapRes ? sitemapRes.count : 0,
 		htmlFiles.length,
 	);
+	results.metaDescription = checkMetaDescriptions(htmlFiles);
 
 	const hasCriticalError = errors.length > 0;
 	const decision = hasCriticalError ? "BLOCKED" : "READY";
@@ -592,16 +713,17 @@ async function run() {
 	console.log("\n==================================================");
 	console.log("SEO HEALTH CHECK REPORT");
 	console.log("==================================================");
-	console.log(`Build:          ${results.build ? "PASS" : "FAIL"}`);
-	console.log(`Robots:         ${results.robots ? "PASS" : "FAIL"}`);
-	console.log(`Noindex:        ${results.noindex ? "PASS" : "FAIL"}`);
-	console.log(`Canonical:      ${results.canonical ? "PASS" : "FAIL"}`);
-	console.log(`Sitemap:        ${results.sitemap ? "PASS" : "FAIL"}`);
-	console.log(`Internal Links: ${results.internalLinks ? "PASS" : "FAIL"}`);
-	console.log(`Core URLs:      ${results.coreUrls ? "PASS" : "FAIL"}`);
-	console.log(`Schema:         ${results.schema ? "PASS" : "FAIL"}`);
-	console.log(`Duplicate:      ${results.duplicateTitles ? "PASS" : "FAIL"}`);
-	console.log(`Page Count:     ${results.pageCount ? "PASS" : "FAIL"}`);
+	console.log(`Build:            ${results.build ? "PASS" : "FAIL"}`);
+	console.log(`Robots:           ${results.robots ? "PASS" : "FAIL"}`);
+	console.log(`Noindex:          ${results.noindex ? "PASS" : "FAIL"}`);
+	console.log(`Canonical:        ${results.canonical ? "PASS" : "FAIL"}`);
+	console.log(`Sitemap:          ${results.sitemap ? "PASS" : "FAIL"}`);
+	console.log(`Internal Links:   ${results.internalLinks ? "PASS" : "FAIL"}`);
+	console.log(`Core URLs:        ${results.coreUrls ? "PASS" : "FAIL"}`);
+	console.log(`Schema:           ${results.schema ? "PASS" : "FAIL"}`);
+	console.log(`Duplicate:        ${results.duplicateTitles ? "PASS" : "FAIL"}`);
+	console.log(`Page Count:       ${results.pageCount ? "PASS" : "FAIL"}`);
+	console.log(`Meta Description: ${results.metaDescription ? "PASS" : "FAIL"}`);
 	console.log("--------------------------------------------------");
 	console.log(`RELEASE_DECISION: ${decision}`);
 	console.log("==================================================\n");

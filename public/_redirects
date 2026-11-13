@@ -8,5 +8,8 @@
 /tutorials/    /tutorial/   301
 /risk/         /tizi/       301
 
+# 重复品牌合并 301 重定向
+/posts/brand-yinghuochong-review/    /posts/brand-firefly-review/    301
+
 # 静态资源与别名重定向
 /sitemap.xml   /sitemap-index.xml   301

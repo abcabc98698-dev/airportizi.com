@@ -2,6 +2,7 @@
 import type { GetStaticPaths } from "astro";
 import Pagination from "@/components/common/Pagination.astro";
 import PostPage from "@/components/layout/PostPage.astro";
+import HomeTopicHub from "@/components/seo/HomeTopicHub.astro";
 import { siteConfig } from "@/config";
 import I18nKey from "@/i18n/i18nKey";
 import { i18n } from "@/i18n/translation";
@@ -30,7 +31,8 @@ const heading = isFirstPage
 	: `${i18n(I18nKey.home)} · 第 ${page.currentPage} 页`;
 ---
 
-<MainGridLayout title={title} description={description} heading={heading}>
+<MainGridLayout title={title} description={description} heading={heading} suppressH1={isFirstPage}>
+  {isFirstPage && <HomeTopicHub />}
   <PostPage page={page} />
   {
     page.total > page.size && (

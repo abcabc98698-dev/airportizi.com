@@ -58,17 +58,23 @@ if (footerConfig.enable) {
       >
     </div>
     <div class="mx-0.5 my-2.5 flex gap-x-2 gap-y-2.5 justify-center flex-wrap">
+      <a class="transition link text-(--primary) font-medium" href={url("about/")}>关于本站</a>
+      <span aria-hidden="true">/</span>
+      <a class="transition link text-(--primary) font-medium" href={url("methodology/")}>评测标准</a>
+      <span aria-hidden="true">/</span>
+      <a class="transition link text-(--primary) font-medium" href={url("disclosure/")}>推广披露</a>
+      <span aria-hidden="true">/</span>
+      <a class="transition link text-(--primary) font-medium" href={url("privacy/")}>隐私政策</a>
+      <span aria-hidden="true">/</span>
+      <a class="transition link text-(--primary) font-medium" href={url("terms/")}>服务条款</a>
+    </div>
+    <div class="mx-0.5 my-2.5 flex gap-x-2 gap-y-2.5 justify-center flex-wrap">
       <span>Powered by</span>
       <a
         class="transition link text-(--primary) font-medium"
         target="_blank"
+        rel="nofollow noopener noreferrer"
         href="https://astro.build">Astro</a
-      >
-      <span aria-hidden="true">&</span>
-      <a
-        class="transition link text-(--primary) font-medium"
-        target="_blank"
-        href="https://github.com/CuteLeaf/Firefly">Firefly</a
       >
     </div>
     <!-- 

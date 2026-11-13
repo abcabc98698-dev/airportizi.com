@@ -7,8 +7,8 @@ import { siteConfig } from "@/config/siteConfig";
 import I18nKey from "@/i18n/i18nKey";
 import { i18n } from "@/i18n/translation";
 import MainGridLayout from "@/layouts/MainGridLayout.astro";
-import { getAuthorAvatarUrl } from "@/utils/schema-image";
-import { buildProfilePage } from "@/utils/schema-utils";
+import { getAuthorAvatarUrl, getSiteLogo } from "@/utils/schema-image";
+import { buildProfilePage, buildPublisherEntity } from "@/utils/schema-utils";
 
 const aboutPost = await getEntry("spec", "about");
 
@@ -19,17 +19,39 @@ if (!aboutPost) {
 const { Content } = await render(aboutPost);
 
 const avatarUrl = await getAuthorAvatarUrl();
-const jsonLd = buildProfilePage({
+const logo = await getSiteLogo();
+const profileSchema = buildProfilePage({
 	site: siteConfig.site_url,
 	profileConfig,
 	authorUrl: Astro.url.toString(),
 	avatarUrl,
 	description: profileConfig.bio,
 });
+const publisherSchema = buildPublisherEntity({
+	site: siteConfig.site_url,
+	siteConfig,
+	logo,
+});
+const jsonLd = {
+	"@context": "https://schema.org",
+	"@graph": [
+		{
+			"@type": ["AboutPage", "ProfilePage"],
+			"@id": `${Astro.url.toString()}#webpage`,
+			url: Astro.url.toString(),
+			name: "关于 Airportizi 机场指南",
+			description: profileConfig.bio,
+			mainEntity: profileSchema.mainEntity,
+			about: { "@id": publisherSchema["@id"] },
+		},
+		publisherSchema,
+	],
+};
 ---
 <MainGridLayout
   title={i18n(I18nKey.about)}
-  description="关于 Airportizi 机场指南：专注 2026 最新科学上网机场测评、IEPL 专线测试、客户端使用指南与防失联安全预警的中立评测团队。"
+  description="关于 Airportizi 机场指南（airportizi.com）：由独立网络评测团队维护，专注2026年稳定科学上网机场测评、IEPL/IPLC物理专线三网探针实测、ChatGPT与Claude AI专线解锁验证、全平台客户端配置教程及防失联预警。坚持自费采购与统一量化打分，拒绝云评测与虚假数据，提供可靠选型参考。"
+  suppressH1={true}
 >
     <script is:inline slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     <div class="flex w-full rounded-(--radius-large) overflow-hidden relative min-h-32">

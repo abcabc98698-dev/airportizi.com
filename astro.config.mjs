@@ -283,11 +283,15 @@ export default defineConfig({
 				if (pathname === "/sponsor/" && !siteConfig.pages.sponsor) {
 					return false;
 				}
-				// 排除搜索页、纯RSS查看页和404页进入Sitemap
+				// 排除搜索页、纯RSS查看页、404页、深层列表分页及低信息量目录索引页进入Sitemap
 				if (
 					pathname === "/search/" ||
 					pathname === "/rss/" ||
-					pathname === "/404/"
+					pathname === "/404/" ||
+					pathname === "/categories/" ||
+					pathname === "/tags/" ||
+					pathname === "/dynamic/" ||
+					/^\/\d+\/$/.test(pathname)
 				) {
 					return false;
 				}

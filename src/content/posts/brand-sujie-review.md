@@ -2,7 +2,7 @@
 title: 速界深度评测：25元/月150GB大流量、AI生产力场景专线（ChatGPT/Claude/Gemini）节点测速报告
 published: 2026-03-08
 pinned: false
-description: 2026 速界（SpeedWorld）全面深度评测实测报告：深度拆解 2024 稳定运营至今的 25 元/月 150GB 真实纯月付 AI 场景特化专线机场。涵盖晚高峰全节点测速实测大图、自研免配置客户端与开源订阅双轨生态、VLESS 协议 SSE 长连接传输优势、IEPL 企业级专线抗抖动评测、150GB 日均 5GB 跨场景数学消耗模型、OpenAI/Claude 3.7/Gemini 2.0 全家桶深度兼容测试、完整 Clash/Mihomo 高级分流配置模板、3 大真实排障复盘案例及专属优惠码 sss1111。
+description: 2026 速界（SpeedWorld）深度评测：拆解 25 元/月 150GB 纯月付 AI 场景专线、自研与 Clash/Mihomo 订阅双轨生态、VLESS 长连接传输与 OpenAI/Claude/Gemini 适配实测，附 150GB 消耗模型及优惠码 sss1111。
 tags: [速界, 机场品牌库, AI机场, ChatGPT机场, Claude机场, 25元机场, 150GB机场, VLESS, IEPL专线, 优惠码]
 category: 机场品牌库
 image: ./images/both-list.avif

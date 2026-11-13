@@ -1,11 +1,55 @@
 ---
 import MainGridLayout from "@/layouts/MainGridLayout.astro";
+
+const canonicalUrl = "https://airportizi.com/methodology/";
+const pageTitle = "评测方法论与数据标准 (Testing Methodology)";
+const pageDescription =
+	"Airportizi 机场指南技术评测方法论与数据采集标准：全面公开电信、联通、移动多省市千兆宽带自动化探针矩阵架构，详解晚高峰并发吞吐测速、持续丢包率压测模型、流媒体与AI解锁判定准则及风控量化评分体系。";
+
+const schemaJsonLd = {
+	"@context": "https://schema.org",
+	"@graph": [
+		{
+			"@type": "WebPage",
+			"@id": `${canonicalUrl}#webpage`,
+			url: canonicalUrl,
+			name: pageTitle,
+			description: pageDescription,
+			inLanguage: "zh-CN",
+			isPartOf: { "@id": "https://airportizi.com/#website" },
+		},
+		{
+			"@type": "BreadcrumbList",
+			itemListElement: [
+				{
+					"@type": "ListItem",
+					position: 1,
+					name: "首页",
+					item: "https://airportizi.com/",
+				},
+				{
+					"@type": "ListItem",
+					position: 2,
+					name: "评测方法论",
+					item: canonicalUrl,
+				},
+			],
+		},
+	],
+};
 ---
 
 <MainGridLayout
-  title="评测方法论与数据标准 (Testing Methodology) - Airportizi 机场指南"
-  description="Airportizi 机场指南技术评测方法论：全公开自动化多点探针架构、三网晚高峰丢包压测模型、AI与流媒体解锁判定准则及防跑路量化指标。"
+  title={pageTitle}
+  description={pageDescription}
+  suppressH1={true}
 >
+  <script
+    is:inline
+    slot="head"
+    type="application/ld+json"
+    set:html={JSON.stringify(schemaJsonLd)}
+  />
   <div class="flex w-full rounded-(--radius-large) overflow-hidden relative min-h-32">
     <div class="card-base z-10 px-9 py-6 relative w-full">
       <div class="prose dark:prose-invert max-w-none">

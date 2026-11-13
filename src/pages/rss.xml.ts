@@ -12,7 +12,6 @@ import type { APIContext } from "astro";
 import { experimental_AstroContainer as AstroContainer } from "astro/container";
 import sanitizeHtml from "sanitize-html";
 import { siteConfig } from "@/config";
-import pkg from "../../package.json";
 
 export const prerender = true;
 
@@ -60,10 +59,7 @@ export async function GET(context: APIContext): Promise<Response> {
 		title: siteConfig.title,
 		description: siteConfig.subtitle || "No description",
 		site: context.site ?? siteConfig.site_url,
-		customData: `<templateTheme>Firefly</templateTheme>
-		<templateThemeVersion>${pkg.version}</templateThemeVersion>
-		<templateThemeUrl>https://github.com/CuteLeaf/Firefly</templateThemeUrl>
-		<lastBuildDate>${formatDateI18nWithTime(new Date())}</lastBuildDate>`,
+		customData: `<lastBuildDate>${formatDateI18nWithTime(new Date())}</lastBuildDate>`,
 		items: feedItems,
 	});
 }

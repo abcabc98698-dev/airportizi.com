@@ -8,7 +8,7 @@ import fs from "node:fs";
 import path from "node:path";
 
 const HOST = "airportizi.com";
-const KEY = "d29068e8c1ed460e92ff8506d9735cd8";
+const KEY = "c072ab578205484790d89b89ce9ce13f";
 const KEY_LOCATION = `https://${HOST}/${KEY}.txt`;
 const CACHE_FILE = path.resolve(process.cwd(), ".indexnow-cache.json");
 const SITEMAP_FILE = path.resolve(process.cwd(), "dist/sitemap-0.xml");

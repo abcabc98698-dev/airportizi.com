@@ -62,13 +62,18 @@ const className = Astro.props.class;
 
                     if (item.url.startsWith("mailto:")) {
                         const encodedEmail = encodeMailto(item.url);
-                        return <a rel="me" aria-label={item.name} href="#" data-encoded-email={encodedEmail} onclick={MAILTO_ONCLICK_SCRIPT},
+                        return <button type="button" aria-label={item.name} data-encoded-email={encodedEmail} onclick={MAILTO_ONCLICK_SCRIPT}
                                     class={className}>
+                            <Icon name={item.icon} class="text-[1.5rem]"></Icon>
+                            {showName && item.name}
+                        </button>
+                    } else if (/^https?:\/\//i.test(item.url)) {
+                        return <a rel="nofollow noopener noreferrer" aria-label={item.name} href={item.url} target="_blank" class={className}>
                             <Icon name={item.icon} class="text-[1.5rem]"></Icon>
                             {showName && item.name}
                         </a>
                     } else {
-                        return <a rel="me" aria-label={item.name} href={item.url} target="_blank" class={className}>
+                        return <a aria-label={item.name} href={item.url} class={className}>
                             <Icon name={item.icon} class="text-[1.5rem]"></Icon>
                             {showName && item.name}
                         </a>
@@ -78,13 +83,19 @@ const className = Astro.props.class;
             {profileConfig.links.length == 1 && (function(item){
                 if (item.url.startsWith("mailto:")) {
                         const encodedEmail = encodeMailto(item.url);
-                        return <a rel="me" aria-label={item.name} href="#" data-encoded-email={encodedEmail} onclick={MAILTO_ONCLICK_SCRIPT},
+                        return <button type="button" aria-label={item.name} data-encoded-email={encodedEmail} onclick={MAILTO_ONCLICK_SCRIPT}
                                     class="btn-regular rounded-lg h-10 gap-2 px-3 font-bold active:scale-95">
                             <Icon name={item.icon} class="text-[1.5rem]"></Icon>
                             {item.name}
-                        </a>
+                        </button>
+                    } else if (/^https?:\/\//i.test(item.url)) {
+                        return <a rel="nofollow noopener noreferrer" aria-label={item.name} href={item.url} target="_blank"
+                                            class="btn-regular rounded-lg h-10 gap-2 px-3 font-bold active:scale-95">
+                                <Icon name={item.icon} class="text-[1.5rem]"></Icon>
+                                {item.name}
+                            </a>
                     } else {
-                        return <a rel="me" aria-label={item.name} href={item.url} target="_blank"
+                        return <a aria-label={item.name} href={item.url}
                                             class="btn-regular rounded-lg h-10 gap-2 px-3 font-bold active:scale-95">
                                 <Icon name={item.icon} class="text-[1.5rem]"></Icon>
                                 {item.name}

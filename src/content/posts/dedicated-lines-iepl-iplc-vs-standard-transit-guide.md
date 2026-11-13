@@ -1,7 +1,7 @@
 ---
-title: 专线机场推荐：IEPL、IPLC与普通线路对比
+title: "IEPL 是什么？2026 IEPL vs IPLC 物理专线与公网中转深度对比及真伪鉴别教程"
 published: 2026-01-31
-description: 2026专线机场深度技术选型指南。全面对比IEPL国际以太网专线、IPLC国际私有租用线路与普通公网中转、直连线路的底层通信机制、延迟抖动表现、过墙安全机制与成本模型。提供真假专线MTR实测鉴别命令、高可用分流配置与3大实战排障案例。
+description: "IEPL（国际以太网专线）是什么？本文从二层物理信道、不过 GFW 原理到晚高峰抗丢包实测，全面对比 IEPL、IPLC 与普通公网中转的延迟抖动与成本差异，提供 MTR 命令真假专线鉴别方法与防踩坑指南，帮你一眼看懂为什么高质量机场必须选 IEPL。"
 tags:
   - 专线机场
   - IEPL专线
@@ -12,6 +12,8 @@ tags:
 category: 进阶指南
 draft: false
 ---
+
+> 💡 **快速导航**：如果你已经了解专线原理，想直接查看精选 IEPL 服务商榜单与实测价格，请前往专题主指南 **[《2026 IEPL 专线机场推荐：真内网机场排行与避坑指南》](/posts/iepl-airports-dedicated-lines-guide-2026/)**；想延伸对比 CN2 GIA/9929 公网优化线路，可参阅 **[《机场线路架构百科（BGP/IEPL/IPLC/CN2）》](/posts/airport-routes-bgp-iepl-iplc-cn2-9929-guide/)**。
 
 ## ⚡ 核心选型结论与速查清单
 

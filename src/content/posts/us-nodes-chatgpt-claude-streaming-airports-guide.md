@@ -1,6 +1,6 @@
 ---
 title: "美国节点机场推荐：ChatGPT、Claude与流媒体指南（2026最新美西IEPL专线、原生住宅双ISP与抗风控实战）"
-description: "2026年最新美国节点机场深度选型与配置指南：深入解析中美跨太平洋海底光缆物理拓扑与时延极限，拆解OpenAI、Claude与主流美区流媒体（Netflix US、Max、Hulu、Disney+）的IP风控机制，对比公网BGP严重丢包与中美纯内网IEPL专线底层差异，实测光速云、微风网络等7大主流机场在全国多地的晚高峰表现，附赠生产级Mihomo YAML全协议分流配置、自动化IP纯净度与流媒体连通性检测脚本及4大真实RCA事故排障复盘。"
+description: "2026 美国节点机场推荐与选型指南：对比中美跨太平洋 IEPL 物理专线与公网 BGP 晚高峰丢包差异，实测光速云、微风网络等 7 家机场的原生双 ISP 纯净度及 ChatGPT、Claude、Netflix US/Max/Hulu 解锁表现，附 Mihomo 分流配置与 IP 检测脚本。"
 published: 2026-03-30
 tags: ["美国节点", "ChatGPT机场", "Claude线路", "流媒体解锁", "美国机场推荐", "原生住宅IP"]
 category: "机场推荐"

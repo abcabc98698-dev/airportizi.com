@@ -43,14 +43,14 @@ export const siteConfig: SiteConfig = {
 	title: "Airportizi 机场指南",
 
 	// 站点副标题
-	subtitle: "2026精选稳定机场推荐 · 节点测评与科学上网指南",
+	subtitle: "2026稳定机场推荐与梯子测评 · IEPL专线/AI节点/高性价比榜单",
 
 	// 站点 URL
 	site_url: "https://airportizi.com",
 
 	// 站点描述
 	description:
-		"Airportizi 机场指南（airportizi.com）专注2026年最新稳定机场推荐、机场排行榜、便宜性价比梯子测速、IEPL专线对比、ChatGPT/Claude/Cursor AI专线解锁、全平台客户端（Clash Verge/小火箭/v2rayN/sing-box）订阅配置及实时机场跑路失联风险预警。",
+		"2026最新稳定机场推荐与机场节点测评：自费实测IEPL/IPLC专线、10元纯月付性价比机场、ChatGPT/Claude原生IP与GitHub程序员开发者代理方案，附Clash Verge/小火箭Shadowrocket全平台客户端下载导入教程与实时跑路失联预警，助你避坑选对高稳机场。",
 
 	// 站点关键词
 	keywords: [
@@ -322,9 +322,8 @@ export const siteConfig: SiteConfig = {
 	// ── MyAnimeList配置 ──────────────────────────────────
 	mal: {
 		// MyAnimeList 用户名（列表需为公开状态，私密列表无法读取）
-		username: "cuteleaf",
-		// MyAnimeList Client ID，在 https://myanimelist.net/apiconfig 注册免费应用后获取
-		clientId: "	0ef34371450f9c6c809deaadec6aa8f3",
+		username: "",
+		clientId: "",
 		// MAL API 地址
 		apiUrl: "https://api.myanimelist.net/v2",
 		// 动画条目详情页地址，末尾需要带 /

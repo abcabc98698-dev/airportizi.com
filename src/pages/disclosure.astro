@@ -1,11 +1,55 @@
 ---
 import MainGridLayout from "@/layouts/MainGridLayout.astro";
+
+const canonicalUrl = "https://airportizi.com/disclosure/";
+const pageTitle = "推广披露与编辑独立性声明 (Affiliate Disclosure)";
+const pageDescription =
+	"Airportizi 机场指南商业合作、联盟返利与编辑独立性披露声明：全面公开本站推荐链接的运作机制与资金用途，郑重承诺推荐佣金绝不增加读者的实际套餐购买成本，反而可通过专属折扣码享受更低优惠价，所有评测评分严格依据探针实测数据独立做出。";
+
+const schemaJsonLd = {
+	"@context": "https://schema.org",
+	"@graph": [
+		{
+			"@type": "WebPage",
+			"@id": `${canonicalUrl}#webpage`,
+			url: canonicalUrl,
+			name: pageTitle,
+			description: pageDescription,
+			inLanguage: "zh-CN",
+			isPartOf: { "@id": "https://airportizi.com/#website" },
+		},
+		{
+			"@type": "BreadcrumbList",
+			itemListElement: [
+				{
+					"@type": "ListItem",
+					position: 1,
+					name: "首页",
+					item: "https://airportizi.com/",
+				},
+				{
+					"@type": "ListItem",
+					position: 2,
+					name: "推广披露声明",
+					item: canonicalUrl,
+				},
+			],
+		},
+	],
+};
 ---
 
 <MainGridLayout
-  title="推广披露与编辑独立性声明 (Affiliate Disclosure) - Airportizi 机场指南"
-  description="Airportizi 机场指南商业合作与推广披露声明：透明解释联盟返利机制、佣金不影响购买价格的承诺与严格的独立评测立场。"
+  title={pageTitle}
+  description={pageDescription}
+  suppressH1={true}
 >
+  <script
+    is:inline
+    slot="head"
+    type="application/ld+json"
+    set:html={JSON.stringify(schemaJsonLd)}
+  />
   <div class="flex w-full rounded-(--radius-large) overflow-hidden relative min-h-32">
     <div class="card-base z-10 px-9 py-6 relative w-full">
       <div class="prose dark:prose-invert max-w-none">

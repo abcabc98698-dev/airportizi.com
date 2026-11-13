@@ -105,20 +105,20 @@ export const backgroundWallpaper: BackgroundWallpaperConfig = {
 			// 图标支持 Iconify 格式：fa7-brands:github、fa7-solid:envelope、mdi:rss 等
 			links: [
 				{
-					name: "GitHub",
-					icon: "fa7-brands:github",
-					url: "https://github.com/CuteLeaf/Firefly",
+					name: "42家品牌库",
+					icon: "material-symbols:database-outline",
+					url: "/brands/",
 					showName: true,
 				},
 				{
-					name: "Email",
-					icon: "fa7-solid:envelope",
-					url: "mailto:xiaye@msn.com",
+					name: "机场推荐",
+					icon: "material-symbols:recommend-outline",
+					url: "/jichang/",
 				},
 				{
-					name: "Sponsor",
-					icon: "material-symbols:favorite",
-					url: "https://blog.cuteleaf.cn/sponsor/",
+					name: "实测标准",
+					icon: "material-symbols:science-outline",
+					url: "/methodology/",
 				},
 				{
 					name: "RSS",

@@ -2,7 +2,7 @@
 title: 主流机场客户端全平台下载与订阅导入教程（Windows/Mac/iOS/Android）
 published: 2026-01-08
 pinned: false
-description: 2026年最新主流机场客户端全平台下载、安装与订阅导入深度指南。全面覆盖Windows、macOS、iOS与Android四大操作系统，深度拆解Clash Verge Rev、小火箭Shadowrocket、Sing-box与v2rayN的底层分流机制、TUN虚拟网卡与系统代理差异，手把手解决节点超时、浏览器无响应及终端命令行代理难题。
+description: "2026 主流机场客户端官方下载与订阅导入指南：覆盖 Clash Verge Rev、小火箭 Shadowrocket、Sing-box 与 v2rayN 全平台安装、官方仓库校验与防假包避坑，手把手图解系统代理与 TUN 虚拟网卡开启方法，解决终端超时难题。"
 tags: [客户端, 使用教程, ClashVerge, 小火箭, Shadowrocket, v2rayN, Sing-box, Windows, Mac, iPhone, Android, 光速云]
 category: 客户端
 image: ./images/left-grid3.avif

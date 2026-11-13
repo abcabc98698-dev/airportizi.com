@@ -5,7 +5,6 @@ export const prerender = true;
 const robotsTxt = `
 User-agent: *
 Allow: /
-Disallow: /_astro/
 Disallow: /archive/?*
 Disallow: /search/?*
 Disallow: /dynamic/comments/

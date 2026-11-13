@@ -63,27 +63,32 @@ const jumpHrefFirst = url("/");
   <div class="flex flex-row gap-3 justify-center" role="navigation" aria-label={i18n(I18nKey.postList)}>
     <!-- 移动端简化版分页 -->
     <div class="mobile-pagination flex items-center gap-3">
-      <a
-        href={page.url.prev || "#"}
-        rel={page.url.prev ? "prev" : undefined}
-        aria-label={i18n(I18nKey.paginationPrev)}
-        aria-disabled={!page.url.prev ? "true" : "false"}
-        tabindex={!page.url.prev ? "-1" : "0"}
-        class:list={[
-          "btn-card overflow-hidden rounded-(--radius-large) text-(--primary) w-11 h-11",
-          {
-            disabled: !page.url.prev,
-            "opacity-50": !page.url.prev,
-            "cursor-not-allowed": !page.url.prev,
-          },
-        ]}
-      >
-        <Icon
-          name="material-symbols:chevron-left-rounded"
-          class="text-[1.75rem]"
-          aria-hidden="true"
-        />
-      </a>
+      {page.url.prev ? (
+        <a
+          href={page.url.prev}
+          rel="prev"
+          aria-label={i18n(I18nKey.paginationPrev)}
+          class="btn-card overflow-hidden rounded-(--radius-large) text-(--primary) w-11 h-11"
+        >
+          <Icon
+            name="material-symbols:chevron-left-rounded"
+            class="text-[1.75rem]"
+            aria-hidden="true"
+          />
+        </a>
+      ) : (
+        <span
+          aria-label={i18n(I18nKey.paginationPrev)}
+          aria-disabled="true"
+          class="btn-card overflow-hidden rounded-(--radius-large) text-(--primary) w-11 h-11 disabled opacity-50 cursor-not-allowed"
+        >
+          <Icon
+            name="material-symbols:chevron-left-rounded"
+            class="text-[1.75rem]"
+            aria-hidden="true"
+          />
+        </span>
+      )}
 
       <div class="btn-card flex items-center rounded-(--radius-large) px-4 h-11 gap-1.5">
         <PageJump
@@ -98,52 +103,62 @@ const jumpHrefFirst = url("/");
         <span class="text-base font-bold text-neutral-700 dark:text-neutral-300">{page.lastPage}</span>
       </div>
 
-      <a
-        href={page.url.next || "#"}
-        rel={page.url.next ? "next" : undefined}
-        aria-label={i18n(I18nKey.paginationNext)}
-        aria-disabled={!page.url.next ? "true" : "false"}
-        tabindex={!page.url.next ? "-1" : "0"}
-        class:list={[
-          "btn-card overflow-hidden rounded-(--radius-large) text-(--primary) w-11 h-11",
-          {
-            disabled: !page.url.next,
-            "opacity-50": !page.url.next,
-            "cursor-not-allowed": !page.url.next,
-          },
-        ]}
-      >
-        <Icon
-          name="material-symbols:chevron-right-rounded"
-          class="text-[1.75rem]"
-          aria-hidden="true"
-        />
-      </a>
+      {page.url.next ? (
+        <a
+          href={page.url.next}
+          rel="next"
+          aria-label={i18n(I18nKey.paginationNext)}
+          class="btn-card overflow-hidden rounded-(--radius-large) text-(--primary) w-11 h-11"
+        >
+          <Icon
+            name="material-symbols:chevron-right-rounded"
+            class="text-[1.75rem]"
+            aria-hidden="true"
+          />
+        </a>
+      ) : (
+        <span
+          aria-label={i18n(I18nKey.paginationNext)}
+          aria-disabled="true"
+          class="btn-card overflow-hidden rounded-(--radius-large) text-(--primary) w-11 h-11 disabled opacity-50 cursor-not-allowed"
+        >
+          <Icon
+            name="material-symbols:chevron-right-rounded"
+            class="text-[1.75rem]"
+            aria-hidden="true"
+          />
+        </span>
+      )}
     </div>
 
     <!-- 桌面端完整版分页 -->
     <div class="desktop-pagination flex items-center gap-3">
-      <a
-        href={page.url.prev || "#"}
-        rel={page.url.prev ? "prev" : undefined}
-        aria-label={i18n(I18nKey.paginationPrev)}
-        aria-disabled={!page.url.prev ? "true" : "false"}
-        tabindex={!page.url.prev ? "-1" : "0"}
-        class:list={[
-          "btn-card overflow-hidden rounded-(--radius-large) text-(--primary) w-11 h-11",
-          {
-            disabled: !page.url.prev,
-            "opacity-50": !page.url.prev,
-            "cursor-not-allowed": !page.url.prev,
-          },
-        ]}
-      >
-        <Icon
-          name="material-symbols:chevron-left-rounded"
-          class="text-[1.75rem]"
-          aria-hidden="true"
-        />
-      </a>
+      {page.url.prev ? (
+        <a
+          href={page.url.prev}
+          rel="prev"
+          aria-label={i18n(I18nKey.paginationPrev)}
+          class="btn-card overflow-hidden rounded-(--radius-large) text-(--primary) w-11 h-11"
+        >
+          <Icon
+            name="material-symbols:chevron-left-rounded"
+            class="text-[1.75rem]"
+            aria-hidden="true"
+          />
+        </a>
+      ) : (
+        <span
+          aria-label={i18n(I18nKey.paginationPrev)}
+          aria-disabled="true"
+          class="btn-card overflow-hidden rounded-(--radius-large) text-(--primary) w-11 h-11 disabled opacity-50 cursor-not-allowed"
+        >
+          <Icon
+            name="material-symbols:chevron-left-rounded"
+            class="text-[1.75rem]"
+            aria-hidden="true"
+          />
+        </span>
+      )}
       {
         pages.map((p) => {
           if (p == HIDDEN)
@@ -178,27 +193,32 @@ const jumpHrefFirst = url("/");
           );
         })
       }
-      <a
-        href={page.url.next || "#"}
-        rel={page.url.next ? "next" : undefined}
-        aria-label={i18n(I18nKey.paginationNext)}
-        aria-disabled={!page.url.next ? "true" : "false"}
-        tabindex={!page.url.next ? "-1" : "0"}
-        class:list={[
-          "btn-card overflow-hidden rounded-(--radius-large) text-(--primary) w-11 h-11",
-          {
-            disabled: !page.url.next,
-            "opacity-50": !page.url.next,
-            "cursor-not-allowed": !page.url.next,
-          },
-        ]}
-      >
-        <Icon
-          name="material-symbols:chevron-right-rounded"
-          class="text-[1.75rem]"
-          aria-hidden="true"
-        />
-      </a>
+      {page.url.next ? (
+        <a
+          href={page.url.next}
+          rel="next"
+          aria-label={i18n(I18nKey.paginationNext)}
+          class="btn-card overflow-hidden rounded-(--radius-large) text-(--primary) w-11 h-11"
+        >
+          <Icon
+            name="material-symbols:chevron-right-rounded"
+            class="text-[1.75rem]"
+            aria-hidden="true"
+          />
+        </a>
+      ) : (
+        <span
+          aria-label={i18n(I18nKey.paginationNext)}
+          aria-disabled="true"
+          class="btn-card overflow-hidden rounded-(--radius-large) text-(--primary) w-11 h-11 disabled opacity-50 cursor-not-allowed"
+        >
+          <Icon
+            name="material-symbols:chevron-right-rounded"
+            class="text-[1.75rem]"
+            aria-hidden="true"
+          />
+        </span>
+      )}
     </div>
   </div>
 </div>

@@ -1,11 +1,13 @@
 ---
-title: "ChatGPT原生IP机场推荐：什么情况下需要原生IP（2026最新双ISP住宅节点、防封号机制与Stripe风控避坑全指南）"
-description: "2026年最新ChatGPT原生IP与住宅IP选型全指南：深度解密原生IP、广播IP、机房IP与双ISP的底层技术差异，系统剖析OpenAI与Stripe Radar风控拦截机理，明确界定Plus绑卡、账号注册与日常对话的真实IP需求，并提供Mihomo精准分流配置、IP纯净度探测脚本与3大实战排障复盘。"
+title: "ChatGPT 原生 IP 机场推荐：双 ISP 住宅节点选购与防封号避坑指南（2026）"
+description: "2026 ChatGPT 原生 IP 与双 ISP 住宅机场推荐：深度拆解原生 IP、广播 IP 与机房 IP 的风控差异，解决 OpenAI 1020 拦截、Plus 绑卡被拒与账号停用问题，附 Mihomo 精准分流与 Scamalytics 纯净度检测脚本。"
 published: 2026-04-08
 tags: ["ChatGPT原生IP", "住宅IP机场", "ChatGPT机场", "双ISP节点", "科学上网"]
 category: "机场推荐"
 draft: false
 ---
+
+> 💡 **专题定位导航**：本文聚焦 **原生 IP / 双 ISP 住宅节点与 Plus/Stripe 防拒付风控原理**；如需对比全生态 OpenAI 接口延迟与综合月付/专线机场榜单，可参阅主指南 **[《ChatGPT 机场推荐：适合 OpenAI 的机场怎么选》](/posts/chatgpt-airports-openai-selection-guide/)** 与 **[《美国节点机场推荐：ChatGPT、Claude 与流媒体指南》](/posts/us-nodes-chatgpt-claude-streaming-airports-guide/)**。
 
 ## 一、2026 年 ChatGPT 原生 IP 核心认知与精选服务商速查榜
 

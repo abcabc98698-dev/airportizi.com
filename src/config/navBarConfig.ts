@@ -241,32 +241,32 @@ const getDynamicNavBarConfig = (): NavBarConfig => {
 		children: [
 			{
 				name: "ChatGPT机场",
-				url: "/posts/ai-chatgpt-claude-cursor-airports/",
+				url: "/posts/chatgpt-airports-openai-selection-guide/",
 				icon: "simple-icons:openai",
 			},
 			{
-				name: "Claude 3.7机场",
-				url: "/posts/ai-chatgpt-claude-cursor-airports/",
+				name: "Claude机场推荐",
+				url: "/posts/claude-airports-ip-node-selection-guide/",
 				icon: "simple-icons:anthropic",
 			},
 			{
-				name: "Cursor/Copilot",
-				url: "/posts/ai-chatgpt-claude-cursor-airports/",
+				name: "Gemini机场推荐",
+				url: "/posts/gemini-airports-google-ai-selection-guide/",
+				icon: "material-symbols:auto-awesome-rounded",
+			},
+			{
+				name: "GitHub/开发者机场",
+				url: "/posts/programmer-airports-github-ai-developer-tools-guide/",
 				icon: "material-symbols:code-rounded",
 			},
 			{
 				name: "Claude Code终端",
-				url: "/posts/ai-chatgpt-claude-cursor-airports/",
+				url: "/posts/claude-code-developer-airports-selection-guide/",
 				icon: "material-symbols:terminal-rounded",
 			},
 			{
-				name: "速界 (AI专项优化)",
-				url: "/posts/brand-sujie-review/",
-				icon: "material-symbols:bolt-rounded",
-			},
-			{
-				name: "AI风控拦截原理",
-				url: "/posts/ai-chatgpt-claude-cursor-airports/#-为什么普通机场用不了-claude-37-和-chatgpt",
+				name: "ChatGPT原生IP",
+				url: "/posts/chatgpt-native-ip-airports-guide/",
 				icon: "material-symbols:lock-reset-rounded",
 			},
 		],
